@@ -1,0 +1,167 @@
+---
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Better Uptime
+providerId: betteruptime
+created: '2026-06-12'
+modified: '2026-06-12'
+reconciled: true
+tags:
+  - Uptime Monitoring
+  - Incident Management
+  - Status Pages
+  - On-Call Scheduling
+  - Observability
+description: >-
+  Better Stack (Better Uptime) pricing is usage-based and per-responder. A free
+  tier includes 10 monitors, 1 status page, and basic alerting. Paid tiers are
+  billed per responder at $34/month (or $29/month annually), with additional
+  monitors, heartbeats, status pages, and add-ons available at additional cost.
+sources:
+  - https://betterstack.com/pricing
+plans:
+  - id: betteruptime-free
+    name: Free
+    type: free
+    description: >-
+      Personal projects and small teams. Includes 10 uptime monitors, 1 status
+      page, Slack and email alerts, 100k exceptions/month, 5k session replays,
+      and 3GB each of logs and traces retained for 3 days.
+    entries:
+      - label: Uptime Monitors
+        name: uptime_monitors
+        type: quota
+        metric: monitors
+        limit: 10
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Status Pages
+        name: status_pages
+        type: quota
+        metric: pages
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Exception Tracking
+        name: exceptions
+        type: quota
+        metric: exceptions
+        limit: 100000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+      - label: Session Replays
+        name: session_replays
+        type: quota
+        metric: replays
+        limit: 5000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0'
+        userMultiplied: false
+  - id: betteruptime-responder
+    name: Responder
+    type: paid
+    description: >-
+      Full access to Uptime and Telemetry for incident responders. Includes
+      on-call scheduling, advanced alerting via SMS, email, Slack, Teams,
+      and push notifications. Priced per responder per month.
+    entries:
+      - label: Responder License
+        name: responder_license
+        type: metered
+        metric: responder
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '34.00'
+        userMultiplied: true
+      - label: Responder License (Annual)
+        name: responder_license_annual
+        type: metered
+        metric: responder
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '29.00'
+        userMultiplied: true
+      - label: Additional Monitors (per 50)
+        name: additional_monitors
+        type: metered
+        metric: monitors_bundle
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 50
+        price: '25.00'
+        userMultiplied: false
+      - label: Additional Heartbeats (per 10)
+        name: additional_heartbeats
+        type: metered
+        metric: heartbeats_bundle
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 10
+        price: '20.00'
+        userMultiplied: false
+      - label: Additional Status Pages
+        name: additional_status_pages
+        type: metered
+        metric: status_page
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '15.00'
+        userMultiplied: false
+  - id: betteruptime-enterprise
+    name: Enterprise
+    type: enterprise
+    description: >-
+      Enterprise tier with SSO, audit logs, call routing, white-label status
+      pages, advanced security add-ons, and dedicated support. Custom pricing
+      available for large deployments.
+    entries:
+      - label: SSO
+        name: sso
+        type: metered
+        metric: user
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '5.00'
+        userMultiplied: true
+      - label: Audit Logs
+        name: audit_logs
+        type: boolean
+        metric: feature
+        limit: 1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '250.00'
+        userMultiplied: false
+      - label: Call Routing (per phone number)
+        name: call_routing
+        type: metered
+        metric: phone_number
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '250.00'
+        userMultiplied: false

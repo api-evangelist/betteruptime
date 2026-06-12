@@ -1,0 +1,68 @@
+---
+aid: betteruptime
+name: Better Uptime
+description: >-
+  Better Uptime (now part of Better Stack) is an uptime monitoring and incident
+  management platform that helps engineering teams detect outages, manage on-call
+  schedules, and communicate incidents through status pages. The platform provides
+  a REST API following the JSON:API specification for programmatic management of
+  monitors, heartbeats, on-call schedules, status pages, and integrations. Better
+  Stack supports Bearer token authentication with both global and team-scoped API
+  tokens, and offers a Terraform provider for infrastructure-as-code workflows.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Uptime Monitoring
+  - Incident Management
+  - Status Pages
+  - On-Call Scheduling
+  - Observability
+  - DevOps
+url: https://raw.githubusercontent.com/api-evangelist/betteruptime/refs/heads/main/apis.yml
+created: '2026-06-12'
+modified: '2026-06-12'
+specificationVersion: '0.19'
+apis:
+  - aid: betteruptime:uptime-api
+    name: Better Stack Uptime API
+    description: >-
+      The Better Stack Uptime API provides programmatic access to manage uptime
+      monitors, heartbeats, on-call schedules, incidents, status pages, integrations,
+      team members, and reporting. The API follows the JSON:API specification and
+      uses Bearer token authentication.
+    humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+    baseURL: https://uptime.betterstack.com/api/v2
+    tags:
+      - Uptime Monitoring
+      - Incident Management
+      - Status Pages
+      - On-Call Scheduling
+    properties:
+      - type: Documentation
+        url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+common:
+  - type: Website
+    url: https://betterstack.com/uptime
+  - type: Documentation
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  - type: GitHubOrganization
+    url: https://github.com/BetterStackHQ
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/betterstack
+  - type: X
+    url: https://x.com/betteruptime
+  - type: Blog
+    url: https://betterstack.com/community/blog/
+  - type: Pricing
+    url: https://betterstack.com/pricing
+  - type: StatusPage
+    url: https://status.betterstack.com/
+  - type: Plans
+    url: plans/betteruptime-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/betteruptime-rate-limits.yml
+  - type: FinOps
+    url: finops/betteruptime-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
