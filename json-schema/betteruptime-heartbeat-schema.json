@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/betteruptime/main/json-schema/betteruptime-heartbeat-schema.json",
+  "title": "Better Stack Heartbeat",
+  "description": "A heartbeat monitor resource in the Better Stack Uptime API following JSON:API conventions.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "type", "attributes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Heartbeat identifier"
+        },
+        "type": {
+          "type": "string",
+          "const": "heartbeat"
+        },
+        "attributes": {
+          "type": "object",
+          "required": ["name", "period", "grace"],
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Unique ping URL for this heartbeat",
+              "readOnly": true
+            },
+            "name": {
+              "type": "string",
+              "description": "Heartbeat name"
+            },
+            "period": {
+              "type": "integer",
+              "description": "Expected ping interval in seconds"
+            },
+            "grace": {
+              "type": "integer",
+              "description": "Grace period in seconds before alerting"
+            },
+            "call": { "type": "boolean" },
+            "sms": { "type": "boolean" },
+            "email": { "type": "boolean" },
+            "push": { "type": "boolean" },
+            "team_wait": {
+              "type": "integer",
+              "description": "Escalation delay in seconds"
+            },
+            "heartbeat_group_id": {
+              "type": ["string", "null"]
+            },
+            "team_name": {
+              "type": "string"
+            },
+            "paused_at": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            },
+            "server_timezone": {
+              "type": ["string", "null"]
+            },
+            "maintenance_from": {
+              "type": "string"
+            },
+            "maintenance_to": {
+              "type": "string"
+            },
+            "maintenance_timezone": {
+              "type": "string"
+            },
+            "maintenance_days": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "status": {
+              "type": "string",
+              "enum": ["paused", "pending", "up", "down"],
+              "readOnly": true
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

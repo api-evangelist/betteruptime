@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/betteruptime/main/json-schema/betteruptime-status-page-schema.json",
+  "title": "Better Stack Status Page",
+  "description": "A status page resource in the Better Stack Uptime API following JSON:API conventions.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "type", "attributes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Status page identifier"
+        },
+        "type": {
+          "type": "string",
+          "const": "status_page"
+        },
+        "attributes": {
+          "type": "object",
+          "required": ["company_name", "subdomain"],
+          "properties": {
+            "company_name": {
+              "type": "string"
+            },
+            "company_url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "subdomain": {
+              "type": "string",
+              "description": "Subdomain for the status page (e.g. mycompany.betteruptime.com)"
+            },
+            "custom_domain": {
+              "type": ["string", "null"],
+              "description": "Custom domain for the status page"
+            },
+            "timezone": {
+              "type": "string"
+            },
+            "theme": {
+              "type": "string",
+              "enum": ["light", "dark"]
+            },
+            "layout": {
+              "type": "string",
+              "enum": ["vertical", "horizontal"]
+            },
+            "aggregate_state": {
+              "type": "string",
+              "enum": ["operational", "degraded_performance", "partial_outage", "major_outage"],
+              "readOnly": true
+            },
+            "subscribable": {
+              "type": "boolean",
+              "description": "Allow visitors to subscribe to status updates"
+            },
+            "password_enabled": {
+              "type": "boolean",
+              "description": "Protect the status page with a password"
+            },
+            "ip_allowlist": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "IP addresses allowed to view the status page"
+            },
+            "history": {
+              "type": "integer",
+              "description": "Incident history retention in days"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

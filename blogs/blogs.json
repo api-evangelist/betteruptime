@@ -1,0 +1,14 @@
+{
+  "repo": "betteruptime",
+  "feeds": [
+    {
+      "source": "https://betterstack.com/community/blog/",
+      "feed_url": "",
+      "title": "Better Stack Community Blog",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-12T00:00:00Z"
+}

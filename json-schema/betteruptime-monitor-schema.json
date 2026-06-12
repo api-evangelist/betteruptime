@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/betteruptime/main/json-schema/betteruptime-monitor-schema.json",
+  "title": "Better Stack Monitor",
+  "description": "A monitor resource in the Better Stack Uptime API following JSON:API conventions.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "type", "attributes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Monitor identifier"
+        },
+        "type": {
+          "type": "string",
+          "const": "monitor"
+        },
+        "attributes": {
+          "type": "object",
+          "required": ["url"],
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri",
+              "description": "Website or host to monitor"
+            },
+            "pronounceable_name": {
+              "type": "string",
+              "description": "Human-readable name used in voice alerts"
+            },
+            "monitor_type": {
+              "type": "string",
+              "enum": ["status", "keyword", "ping", "tcp", "udp", "smtp", "pop", "imap", "dns", "playwright"],
+              "description": "The type of check to perform"
+            },
+            "monitor_group_id": {
+              "type": ["string", "null"],
+              "description": "Associated monitor group ID"
+            },
+            "status": {
+              "type": "string",
+              "enum": ["up", "down", "validating", "paused", "pending", "maintenance"],
+              "description": "Current monitor status",
+              "readOnly": true
+            },
+            "last_checked_at": {
+              "type": ["string", "null"],
+              "format": "date-time",
+              "readOnly": true
+            },
+            "check_frequency": {
+              "type": "integer",
+              "description": "Check interval in seconds",
+              "minimum": 30
+            },
+            "request_timeout": {
+              "type": "integer",
+              "description": "Timeout in milliseconds (ports) or seconds (HTTP)"
+            },
+            "recovery_period": {
+              "type": "integer",
+              "description": "Seconds before auto-resolving an incident"
+            },
+            "confirmation_period": {
+              "type": "integer",
+              "description": "Delay in seconds before creating an incident"
+            },
+            "call": {
+              "type": "boolean",
+              "description": "Enable phone call alerts"
+            },
+            "sms": {
+              "type": "boolean",
+              "description": "Enable SMS alerts"
+            },
+            "email": {
+              "type": "boolean",
+              "description": "Enable email alerts"
+            },
+            "push": {
+              "type": "boolean",
+              "description": "Enable push notification alerts"
+            },
+            "critical_alert": {
+              "type": "boolean",
+              "description": "Enable critical iOS alerts bypassing mute"
+            },
+            "team_wait": {
+              "type": "integer",
+              "description": "Escalation delay in seconds"
+            },
+            "policy_id": {
+              "type": ["string", "null"]
+            },
+            "expiration_policy_id": {
+              "type": ["string", "null"]
+            },
+            "verify_ssl": {
+              "type": "boolean"
+            },
+            "ssl_expiration": {
+              "type": ["integer", "null"],
+              "description": "Alert days before SSL cert expiry"
+            },
+            "domain_expiration": {
+              "type": ["integer", "null"],
+              "description": "Alert days before domain expiry"
+            },
+            "regions": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Geographic regions to run checks from"
+            },
+            "maintenance_from": {
+              "type": "string",
+              "pattern": "^\\d{2}:\\d{2}$"
+            },
+            "maintenance_to": {
+              "type": "string",
+              "pattern": "^\\d{2}:\\d{2}$"
+            },
+            "maintenance_timezone": {
+              "type": "string"
+            },
+            "maintenance_days": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "proxy_host": {
+              "type": ["string", "null"]
+            },
+            "proxy_port": {
+              "type": ["integer", "null"]
+            },
+            "request_headers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "value": { "type": "string" }
+                }
+              }
+            },
+            "request_body": {
+              "type": ["string", "null"]
+            },
+            "expected_status_codes": {
+              "type": "array",
+              "items": { "type": "integer" }
+            },
+            "required_keyword": {
+              "type": ["string", "null"]
+            },
+            "port": {
+              "type": ["integer", "null"]
+            },
+            "playwright_script": {
+              "type": ["string", "null"]
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "readOnly": true
+            },
+            "paused_at": {
+              "type": ["string", "null"],
+              "format": "date-time",
+              "readOnly": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

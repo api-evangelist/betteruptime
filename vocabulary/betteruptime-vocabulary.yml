@@ -1,0 +1,110 @@
+vocabulary:
+  source: Better Stack Uptime API
+  url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  terms:
+    - term: monitor
+      definition: >-
+        An automated check that periodically tests a URL, host, or service
+        endpoint to verify availability and performance. Supports types
+        including status (HTTP), keyword, ping, TCP, UDP, SMTP, POP, IMAP,
+        DNS, and Playwright synthetic scripts.
+      type: resource
+
+    - term: heartbeat
+      definition: >-
+        A dead-man's switch monitor that expects a periodic ping from an
+        external process (e.g., a cron job). If the ping does not arrive
+        within the configured period plus grace time, an incident is triggered.
+      type: resource
+
+    - term: incident
+      definition: >-
+        An event created when a monitor or heartbeat detects a failure.
+        Incidents track the timeline from detection through acknowledgement
+        to resolution and capture notification history.
+      type: resource
+
+    - term: status_page
+      definition: >-
+        A public or private web page that displays the current operational
+        status and incident history of services. Supports custom domains,
+        subdomain hosting, themes, and email subscriptions.
+      type: resource
+
+    - term: monitor_group
+      definition: >-
+        A logical grouping of monitors that can be managed together and
+        displayed as a single component on a status page.
+      type: resource
+
+    - term: heartbeat_group
+      definition: >-
+        A logical grouping of heartbeat monitors.
+      type: resource
+
+    - term: on_call_schedule
+      definition: >-
+        A rotation schedule that determines which team member is responsible
+        for responding to incidents at any given time.
+      type: resource
+
+    - term: policy
+      definition: >-
+        An escalation policy that defines how and when alerts are sent,
+        escalated, and to whom during an incident.
+      type: resource
+
+    - term: status
+      definition: >-
+        The current health state of a monitor or heartbeat. Monitor statuses
+        include up, down, validating, paused, pending, and maintenance.
+        Heartbeat statuses include up, down, paused, and pending.
+      type: concept
+
+    - term: check_frequency
+      definition: >-
+        The interval in seconds between consecutive checks for a monitor.
+      type: attribute
+
+    - term: recovery_period
+      definition: >-
+        The time in seconds that a monitor must remain up before an incident
+        is automatically resolved.
+      type: attribute
+
+    - term: confirmation_period
+      definition: >-
+        The delay in seconds after a failure is detected before an incident
+        is created, reducing false positives from transient failures.
+      type: attribute
+
+    - term: pronounceable_name
+      definition: >-
+        A human-readable name for a monitor used in voice call alerts to
+        identify the affected service.
+      type: attribute
+
+    - term: aggregate_state
+      definition: >-
+        The overall health status of a status page derived from the
+        statuses of all associated monitors. Values include operational,
+        degraded_performance, partial_outage, and major_outage.
+      type: concept
+
+    - term: region
+      definition: >-
+        A geographic location from which monitoring checks are issued.
+        Using multiple regions reduces false positives from regional outages.
+      type: concept
+
+    - term: maintenance_window
+      definition: >-
+        A scheduled time period during which a monitor does not generate
+        alerts, defined by from/to times, days of week, and timezone.
+      type: concept
+
+    - term: bearer_token
+      definition: >-
+        The authentication mechanism used by the Better Stack Uptime API.
+        Tokens can be global (access all teams) or team-scoped.
+      type: concept

@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "betterstack": "https://betterstack.com/docs/uptime/api/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Monitor": {
+      "@id": "betterstack:Monitor",
+      "@type": "@id"
+    },
+    "Heartbeat": {
+      "@id": "betterstack:Heartbeat",
+      "@type": "@id"
+    },
+    "Incident": {
+      "@id": "betterstack:Incident",
+      "@type": "@id"
+    },
+    "StatusPage": {
+      "@id": "betterstack:StatusPage",
+      "@type": "@id"
+    },
+
+    "id": "@id",
+    "type": "@type",
+
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "name": {
+      "@id": "schema:name"
+    },
+    "pronounceable_name": {
+      "@id": "betterstack:pronounceableName"
+    },
+    "monitor_type": {
+      "@id": "betterstack:monitorType"
+    },
+    "status": {
+      "@id": "betterstack:status"
+    },
+    "check_frequency": {
+      "@id": "betterstack:checkFrequency",
+      "@type": "xsd:integer"
+    },
+    "request_timeout": {
+      "@id": "betterstack:requestTimeout",
+      "@type": "xsd:integer"
+    },
+    "recovery_period": {
+      "@id": "betterstack:recoveryPeriod",
+      "@type": "xsd:integer"
+    },
+    "confirmation_period": {
+      "@id": "betterstack:confirmationPeriod",
+      "@type": "xsd:integer"
+    },
+    "regions": {
+      "@id": "betterstack:regions",
+      "@container": "@list"
+    },
+    "verify_ssl": {
+      "@id": "betterstack:verifySSL",
+      "@type": "xsd:boolean"
+    },
+    "ssl_expiration": {
+      "@id": "betterstack:sslExpiration",
+      "@type": "xsd:integer"
+    },
+    "domain_expiration": {
+      "@id": "betterstack:domainExpiration",
+      "@type": "xsd:integer"
+    },
+    "period": {
+      "@id": "betterstack:period",
+      "@type": "xsd:integer"
+    },
+    "grace": {
+      "@id": "betterstack:gracePeriod",
+      "@type": "xsd:integer"
+    },
+    "cause": {
+      "@id": "betterstack:cause"
+    },
+    "started_at": {
+      "@id": "betterstack:startedAt",
+      "@type": "xsd:dateTime"
+    },
+    "acknowledged_at": {
+      "@id": "betterstack:acknowledgedAt",
+      "@type": "xsd:dateTime"
+    },
+    "resolved_at": {
+      "@id": "betterstack:resolvedAt",
+      "@type": "xsd:dateTime"
+    },
+    "acknowledged_by": {
+      "@id": "betterstack:acknowledgedBy"
+    },
+    "resolved_by": {
+      "@id": "betterstack:resolvedBy"
+    },
+    "aggregate_state": {
+      "@id": "betterstack:aggregateState"
+    },
+    "subdomain": {
+      "@id": "betterstack:subdomain"
+    },
+    "custom_domain": {
+      "@id": "betterstack:customDomain"
+    },
+    "company_name": {
+      "@id": "schema:legalName"
+    },
+    "company_url": {
+      "@id": "schema:sameAs",
+      "@type": "@id"
+    },
+    "subscribable": {
+      "@id": "betterstack:subscribable",
+      "@type": "xsd:boolean"
+    },
+    "history": {
+      "@id": "betterstack:historyDays",
+      "@type": "xsd:integer"
+    },
+    "maintenance_from": {
+      "@id": "betterstack:maintenanceFrom"
+    },
+    "maintenance_to": {
+      "@id": "betterstack:maintenanceTo"
+    },
+    "maintenance_timezone": {
+      "@id": "betterstack:maintenanceTimezone"
+    },
+    "maintenance_days": {
+      "@id": "betterstack:maintenanceDays",
+      "@container": "@list"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "paused_at": {
+      "@id": "betterstack:pausedAt",
+      "@type": "xsd:dateTime"
+    },
+    "call": {
+      "@id": "betterstack:alertByCall",
+      "@type": "xsd:boolean"
+    },
+    "sms": {
+      "@id": "betterstack:alertBySMS",
+      "@type": "xsd:boolean"
+    },
+    "email": {
+      "@id": "betterstack:alertByEmail",
+      "@type": "xsd:boolean"
+    },
+    "push": {
+      "@id": "betterstack:alertByPush",
+      "@type": "xsd:boolean"
+    },
+    "team_wait": {
+      "@id": "betterstack:teamWait",
+      "@type": "xsd:integer"
+    },
+    "policy_id": {
+      "@id": "betterstack:policyId"
+    },
+    "attributes": {
+      "@id": "betterstack:attributes"
+    },
+    "data": {
+      "@id": "betterstack:data"
+    },
+    "pagination": {
+      "@id": "betterstack:pagination"
+    }
+  }
+}

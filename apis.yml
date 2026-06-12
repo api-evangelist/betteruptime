@@ -40,6 +40,8 @@ apis:
     properties:
       - type: Documentation
         url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+      - type: OpenAPI
+        url: openapi/betteruptime-uptime-api-openapi.yml
 common:
   - type: Website
     url: https://betterstack.com/uptime
@@ -63,6 +65,12 @@ common:
     url: rate-limits/betteruptime-rate-limits.yml
   - type: FinOps
     url: finops/betteruptime-finops.yml
+  - type: Vocabulary
+    url: vocabulary/betteruptime-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/betteruptime-context.jsonld
+  - type: BlogFeeds
+    url: blogs/blogs.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

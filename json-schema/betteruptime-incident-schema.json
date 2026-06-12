@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/betteruptime/main/json-schema/betteruptime-incident-schema.json",
+  "title": "Better Stack Incident",
+  "description": "An incident resource in the Better Stack Uptime API following JSON:API conventions.",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "required": ["id", "type", "attributes"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Incident identifier"
+        },
+        "type": {
+          "type": "string",
+          "const": "incident"
+        },
+        "attributes": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Incident name"
+            },
+            "cause": {
+              "type": "string",
+              "description": "Root cause description"
+            },
+            "status": {
+              "type": "string",
+              "description": "Current incident status"
+            },
+            "started_at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "acknowledged_at": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            },
+            "resolved_at": {
+              "type": ["string", "null"],
+              "format": "date-time"
+            },
+            "acknowledged_by": {
+              "type": ["string", "null"]
+            },
+            "resolved_by": {
+              "type": ["string", "null"]
+            },
+            "team_name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "http_method": {
+              "type": "string"
+            },
+            "call": { "type": "boolean" },
+            "sms": { "type": "boolean" },
+            "email": { "type": "boolean" },
+            "push": { "type": "boolean" },
+            "regions": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "response_content": {
+              "type": ["string", "null"]
+            },
+            "screenshot_url": {
+              "type": ["string", "null"],
+              "format": "uri"
+            },
+            "metadata": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

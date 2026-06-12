@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "id": "789012",
+      "type": "incident",
+      "attributes": {
+        "name": "example.com is down",
+        "cause": "Connection timed out after 30 seconds",
+        "status": "resolved",
+        "started_at": "2026-06-10T14:22:00.000Z",
+        "acknowledged_at": "2026-06-10T14:25:00.000Z",
+        "resolved_at": "2026-06-10T14:45:00.000Z",
+        "acknowledged_by": "john@example.com",
+        "resolved_by": "john@example.com",
+        "team_name": "Engineering",
+        "url": "https://example.com",
+        "http_method": "GET",
+        "call": false,
+        "sms": true,
+        "email": true,
+        "push": true,
+        "regions": ["us", "eu"],
+        "response_content": null,
+        "screenshot_url": null,
+        "metadata": {}
+      }
+    }
+  ],
+  "pagination": {
+    "first": "https://uptime.betterstack.com/api/v3/incidents?page=1",
+    "last": "https://uptime.betterstack.com/api/v3/incidents?page=5",
+    "prev": null,
+    "next": "https://uptime.betterstack.com/api/v3/incidents?page=2"
+  }
+}
