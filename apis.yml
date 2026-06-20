@@ -10,7 +10,7 @@ description: >-
   Stack supports Bearer token authentication with both global and team-scoped API
   tokens, and offers a Terraform provider for infrastructure-as-code workflows.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Uptime Monitoring
   - Incident Management
