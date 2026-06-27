@@ -69,7 +69,7 @@ common:
     url: vocabulary/betteruptime-vocabulary.yml
   - type: JSONLDContext
     url: json-ld/betteruptime-context.jsonld
-  - type: BlogFeeds
+  - type: BlogFeed
     url: blogs/blogs.json
 maintainers:
   - FN: Kin Lane
