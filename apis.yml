@@ -43,6 +43,14 @@ apis:
       - type: OpenAPI
         url: openapi/betteruptime-uptime-api-openapi.yml
 common:
+  - type: TrustCenter
+    url: security/betteruptime-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/betteruptime-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/betteruptime-domain-security.yml
+  - type: Authentication
+    url: authentication/betteruptime-authentication.yml
   - type: Website
     url: https://betterstack.com/uptime
   - type: Documentation
