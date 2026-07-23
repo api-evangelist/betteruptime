@@ -1,0 +1,292 @@
+openapi: 3.0.3
+info:
+  title: Better Stack Uptime Heartbeats API
+  description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: v2
+  contact:
+    name: Better Stack Support
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  termsOfService: https://betterstack.com/terms
+  license:
+    name: Proprietary
+    url: https://betterstack.com/terms
+servers:
+- url: https://uptime.betterstack.com/api/v2
+  description: Better Stack Uptime API v2
+- url: https://uptime.betterstack.com/api/v3
+  description: Better Stack Uptime API v3 (incidents)
+security:
+- BearerAuth: []
+tags:
+- name: Heartbeats
+  description: Manage heartbeat monitors for cron jobs and background workers
+paths:
+  /heartbeats:
+    get:
+      operationId: listHeartbeats
+      summary: List heartbeats
+      description: Returns a paginated list of all heartbeat monitors.
+      tags:
+      - Heartbeats
+      parameters:
+      - name: team_name
+        in: query
+        description: Filter by team name
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of heartbeats
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createHeartbeat
+      summary: Create a heartbeat
+      description: Creates a new heartbeat monitor.
+      tags:
+      - Heartbeats
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeartbeatCreateRequest'
+      responses:
+        '201':
+          description: Heartbeat created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+  /heartbeats/{id}:
+    get:
+      operationId: getHeartbeat
+      summary: Get a heartbeat
+      description: Returns a single heartbeat by ID.
+      tags:
+      - Heartbeats
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single heartbeat
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateHeartbeat
+      summary: Update a heartbeat
+      description: Updates an existing heartbeat monitor.
+      tags:
+      - Heartbeats
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeartbeatCreateRequest'
+      responses:
+        '200':
+          description: Heartbeat updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeartbeatResponse'
+    delete:
+      operationId: deleteHeartbeat
+      summary: Delete a heartbeat
+      description: Deletes an existing heartbeat monitor.
+      tags:
+      - Heartbeats
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Heartbeat deleted
+components:
+  schemas:
+    HeartbeatResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - heartbeat
+        attributes:
+          $ref: '#/components/schemas/HeartbeatAttributes'
+    HeartbeatAttributes:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Unique ping URL for the heartbeat
+          readOnly: true
+        name:
+          type: string
+          description: Heartbeat name
+        period:
+          type: integer
+          description: Expected ping interval in seconds
+        grace:
+          type: integer
+          description: Grace period in seconds before alerting
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        team_wait:
+          type: integer
+          description: Escalation delay in seconds
+        heartbeat_group_id:
+          type: string
+          nullable: true
+        team_name:
+          type: string
+        paused_at:
+          type: string
+          format: date-time
+          nullable: true
+        server_timezone:
+          type: string
+          nullable: true
+        maintenance_from:
+          type: string
+        maintenance_to:
+          type: string
+        maintenance_timezone:
+          type: string
+        maintenance_days:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - paused
+          - pending
+          - up
+          - down
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    HeartbeatResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HeartbeatResource'
+    HeartbeatCreateRequest:
+      type: object
+      required:
+      - name
+      - period
+      - grace
+      properties:
+        name:
+          type: string
+        period:
+          type: integer
+        grace:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        team_wait:
+          type: integer
+        heartbeat_group_id:
+          type: string
+    HeartbeatListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/HeartbeatResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+          nullable: true
+        next:
+          type: string
+          format: uri
+          nullable: true
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from Better Stack account settings

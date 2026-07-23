@@ -1,0 +1,286 @@
+openapi: 3.0.3
+info:
+  title: Better Stack Uptime Heartbeats Status Pages API
+  description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: v2
+  contact:
+    name: Better Stack Support
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  termsOfService: https://betterstack.com/terms
+  license:
+    name: Proprietary
+    url: https://betterstack.com/terms
+servers:
+- url: https://uptime.betterstack.com/api/v2
+  description: Better Stack Uptime API v2
+- url: https://uptime.betterstack.com/api/v3
+  description: Better Stack Uptime API v3 (incidents)
+security:
+- BearerAuth: []
+tags:
+- name: Status Pages
+  description: Manage public status pages for communicating service health
+paths:
+  /status-pages:
+    get:
+      operationId: listStatusPages
+      summary: List status pages
+      description: Returns a list of all your status pages.
+      tags:
+      - Status Pages
+      parameters:
+      - name: team_name
+        in: query
+        description: Filter by team name
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of status pages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPageListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createStatusPage
+      summary: Create a status page
+      description: Creates a new status page.
+      tags:
+      - Status Pages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusPageCreateRequest'
+      responses:
+        '201':
+          description: Status page created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPageResponse'
+  /status-pages/{id}:
+    get:
+      operationId: getStatusPage
+      summary: Get a status page
+      description: Returns a single status page by ID.
+      tags:
+      - Status Pages
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single status page
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPageResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateStatusPage
+      summary: Update a status page
+      description: Updates an existing status page.
+      tags:
+      - Status Pages
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StatusPageCreateRequest'
+      responses:
+        '200':
+          description: Status page updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatusPageResponse'
+    delete:
+      operationId: deleteStatusPage
+      summary: Delete a status page
+      description: Deletes an existing status page.
+      tags:
+      - Status Pages
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Status page deleted
+components:
+  schemas:
+    StatusPageCreateRequest:
+      type: object
+      required:
+      - company_name
+      - subdomain
+      properties:
+        company_name:
+          type: string
+        company_url:
+          type: string
+          format: uri
+        subdomain:
+          type: string
+        custom_domain:
+          type: string
+        timezone:
+          type: string
+        theme:
+          type: string
+          enum:
+          - light
+          - dark
+        layout:
+          type: string
+          enum:
+          - vertical
+          - horizontal
+        subscribable:
+          type: boolean
+        password_enabled:
+          type: boolean
+        history:
+          type: integer
+    StatusPageListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPageResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StatusPageResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - status_page
+        attributes:
+          $ref: '#/components/schemas/StatusPageAttributes'
+    StatusPageResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StatusPageResource'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+          nullable: true
+        next:
+          type: string
+          format: uri
+          nullable: true
+    StatusPageAttributes:
+      type: object
+      properties:
+        company_name:
+          type: string
+        company_url:
+          type: string
+          format: uri
+        subdomain:
+          type: string
+        custom_domain:
+          type: string
+          nullable: true
+        timezone:
+          type: string
+        theme:
+          type: string
+          enum:
+          - light
+          - dark
+        layout:
+          type: string
+          enum:
+          - vertical
+          - horizontal
+        aggregate_state:
+          type: string
+          enum:
+          - operational
+          - degraded_performance
+          - partial_outage
+          - major_outage
+          readOnly: true
+        subscribable:
+          type: boolean
+        password_enabled:
+          type: boolean
+        ip_allowlist:
+          type: array
+          items:
+            type: string
+        history:
+          type: integer
+          description: Incident history retention in days
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from Better Stack account settings

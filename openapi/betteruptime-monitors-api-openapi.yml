@@ -1,0 +1,457 @@
+openapi: 3.0.3
+info:
+  title: Better Stack Uptime Heartbeats Monitors API
+  description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: v2
+  contact:
+    name: Better Stack Support
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  termsOfService: https://betterstack.com/terms
+  license:
+    name: Proprietary
+    url: https://betterstack.com/terms
+servers:
+- url: https://uptime.betterstack.com/api/v2
+  description: Better Stack Uptime API v2
+- url: https://uptime.betterstack.com/api/v3
+  description: Better Stack Uptime API v3 (incidents)
+security:
+- BearerAuth: []
+tags:
+- name: Monitors
+  description: Manage uptime monitors for websites and services
+paths:
+  /monitors:
+    get:
+      operationId: listMonitors
+      summary: List monitors
+      description: Returns a paginated list of all monitors in your account.
+      tags:
+      - Monitors
+      parameters:
+      - name: team_name
+        in: query
+        description: Filter monitors belonging to a specified team when using global API token
+        schema:
+          type: string
+      - name: url
+        in: query
+        description: Filter by monitor URL
+        schema:
+          type: string
+      - name: pronounceable_name
+        in: query
+        description: Filter by monitor pronounceable name
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of monitors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createMonitor
+      summary: Create a monitor
+      description: Creates a new uptime monitor.
+      tags:
+      - Monitors
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitorCreateRequest'
+      responses:
+        '201':
+          description: Monitor created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorResponse'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+  /monitors/{id}:
+    get:
+      operationId: getMonitor
+      summary: Get a monitor
+      description: Returns a single monitor by ID.
+      tags:
+      - Monitors
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '200':
+          description: A single monitor
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorResponse'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateMonitor
+      summary: Update a monitor
+      description: Updates an existing monitor.
+      tags:
+      - Monitors
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MonitorCreateRequest'
+      responses:
+        '200':
+          description: Monitor updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonitorResponse'
+        '422':
+          $ref: '#/components/responses/UnprocessableEntity'
+    delete:
+      operationId: deleteMonitor
+      summary: Delete a monitor
+      description: Deletes an existing monitor.
+      tags:
+      - Monitors
+      parameters:
+      - $ref: '#/components/parameters/Id'
+      responses:
+        '204':
+          description: Monitor deleted
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    MonitorAttributes:
+      type: object
+      properties:
+        url:
+          type: string
+          format: uri
+          description: Website or host to monitor
+        pronounceable_name:
+          type: string
+          description: Human-readable name used in voice alerts
+        monitor_type:
+          type: string
+          enum:
+          - status
+          - keyword
+          - ping
+          - tcp
+          - udp
+          - smtp
+          - pop
+          - imap
+          - dns
+          - playwright
+          description: The type of check to perform
+        monitor_group_id:
+          type: string
+          nullable: true
+          description: Associated monitor group ID
+        status:
+          type: string
+          enum:
+          - up
+          - down
+          - validating
+          - paused
+          - pending
+          - maintenance
+          readOnly: true
+        last_checked_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+        check_frequency:
+          type: integer
+          description: Check interval in seconds
+        request_timeout:
+          type: integer
+          description: Timeout in milliseconds (ports) or seconds (others)
+        recovery_period:
+          type: integer
+          description: Time in seconds required before auto-resolving an incident
+        confirmation_period:
+          type: integer
+          description: Delay in seconds before creating an incident
+        call:
+          type: boolean
+          description: Enable phone call alerts
+        sms:
+          type: boolean
+          description: Enable SMS alerts
+        email:
+          type: boolean
+          description: Enable email alerts
+        push:
+          type: boolean
+          description: Enable push notification alerts
+        critical_alert:
+          type: boolean
+          description: Enable critical iOS alerts bypassing mute
+        team_wait:
+          type: integer
+          description: Escalation delay in seconds
+        policy_id:
+          type: string
+          nullable: true
+          description: Alert policy ID
+        expiration_policy_id:
+          type: string
+          nullable: true
+          description: SSL/domain expiration alert policy ID
+        verify_ssl:
+          type: boolean
+          description: Monitor SSL certificate validity
+        ssl_expiration:
+          type: integer
+          nullable: true
+          description: Alert days before SSL certificate expiry
+        domain_expiration:
+          type: integer
+          nullable: true
+          description: Alert days before domain expiry
+        regions:
+          type: array
+          items:
+            type: string
+          description: Geographic regions to check from
+        maintenance_from:
+          type: string
+          description: Maintenance window start time (HH:MM)
+        maintenance_to:
+          type: string
+          description: Maintenance window end time (HH:MM)
+        maintenance_timezone:
+          type: string
+          description: Timezone for maintenance window
+        maintenance_days:
+          type: array
+          items:
+            type: string
+          description: Days of week for maintenance window
+        proxy_host:
+          type: string
+          nullable: true
+          description: Proxy host for check requests
+        proxy_port:
+          type: integer
+          nullable: true
+          description: Proxy port for check requests
+        request_headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+          description: Custom HTTP request headers
+        request_body:
+          type: string
+          nullable: true
+          description: Custom HTTP request body
+        expected_status_codes:
+          type: array
+          items:
+            type: integer
+          description: HTTP status codes that indicate success
+        required_keyword:
+          type: string
+          nullable: true
+          description: Keyword that must be present in the response
+        port:
+          type: integer
+          nullable: true
+          description: Port number for TCP/UDP/SMTP/POP/IMAP checks
+        playwright_script:
+          type: string
+          nullable: true
+          description: Playwright script for synthetic monitoring
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        paused_at:
+          type: string
+          format: date-time
+          nullable: true
+          readOnly: true
+    MonitorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MonitorResource'
+    MonitorCreateRequest:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+        pronounceable_name:
+          type: string
+        monitor_type:
+          type: string
+          enum:
+          - status
+          - keyword
+          - ping
+          - tcp
+          - udp
+          - smtp
+          - pop
+          - imap
+          - dns
+          - playwright
+        check_frequency:
+          type: integer
+        request_timeout:
+          type: integer
+        recovery_period:
+          type: integer
+        confirmation_period:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        regions:
+          type: array
+          items:
+            type: string
+        verify_ssl:
+          type: boolean
+        ssl_expiration:
+          type: integer
+        domain_expiration:
+          type: integer
+        expected_status_codes:
+          type: array
+          items:
+            type: integer
+        required_keyword:
+          type: string
+        request_headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        request_body:
+          type: string
+        policy_id:
+          type: string
+        port:
+          type: integer
+    MonitorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+          nullable: true
+        next:
+          type: string
+          format: uri
+          nullable: true
+    MonitorResource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Monitor identifier
+        type:
+          type: string
+          enum:
+          - monitor
+        attributes:
+          $ref: '#/components/schemas/MonitorAttributes'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from Better Stack account settings

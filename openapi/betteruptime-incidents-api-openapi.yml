@@ -1,0 +1,205 @@
+openapi: 3.0.3
+info:
+  title: Better Stack Uptime Heartbeats Incidents API
+  description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
+  version: v2
+  contact:
+    name: Better Stack Support
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  termsOfService: https://betterstack.com/terms
+  license:
+    name: Proprietary
+    url: https://betterstack.com/terms
+servers:
+- url: https://uptime.betterstack.com/api/v2
+  description: Better Stack Uptime API v2
+- url: https://uptime.betterstack.com/api/v3
+  description: Better Stack Uptime API v3 (incidents)
+security:
+- BearerAuth: []
+tags:
+- name: Incidents
+  description: View and manage incidents triggered by monitors
+paths:
+  /incidents:
+    get:
+      operationId: listIncidents
+      summary: List incidents
+      description: Returns a list of all incidents with optional filtering.
+      tags:
+      - Incidents
+      servers:
+      - url: https://uptime.betterstack.com/api/v3
+      parameters:
+      - name: team_name
+        in: query
+        description: Filter by team name
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Start date for filtering (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: to
+        in: query
+        description: End date for filtering (YYYY-MM-DD)
+        schema:
+          type: string
+          format: date
+      - name: monitor_id
+        in: query
+        description: Filter by monitor ID
+        schema:
+          type: string
+      - name: heartbeat_id
+        in: query
+        description: Filter by heartbeat ID
+        schema:
+          type: string
+      - name: resolved
+        in: query
+        description: Filter by resolved status
+        schema:
+          type: boolean
+      - name: acknowledged
+        in: query
+        description: Filter by acknowledged status
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: Page number for pagination
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: A list of incidents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    IncidentResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - incident
+        attributes:
+          $ref: '#/components/schemas/IncidentAttributes'
+    IncidentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncidentResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    IncidentAttributes:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Incident name
+        cause:
+          type: string
+          description: Root cause description
+        status:
+          type: string
+          description: Current incident status
+        started_at:
+          type: string
+          format: date-time
+        acknowledged_at:
+          type: string
+          format: date-time
+          nullable: true
+        resolved_at:
+          type: string
+          format: date-time
+          nullable: true
+        acknowledged_by:
+          type: string
+          nullable: true
+        resolved_by:
+          type: string
+          nullable: true
+        team_name:
+          type: string
+        url:
+          type: string
+          format: uri
+        http_method:
+          type: string
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        regions:
+          type: array
+          items:
+            type: string
+        response_content:
+          type: string
+          nullable: true
+        screenshot_url:
+          type: string
+          format: uri
+          nullable: true
+        metadata:
+          type: object
+          additionalProperties: true
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type: string
+          format: uri
+          nullable: true
+        next:
+          type: string
+          format: uri
+          nullable: true
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token obtained from Better Stack account settings
