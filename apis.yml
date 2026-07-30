@@ -10,7 +10,20 @@ description: >-
   Stack supports Bearer token authentication with both global and team-scoped API
   tokens, and offers a Terraform provider for infrastructure-as-code workflows.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/betteruptime.png
 tags:
   - Uptime Monitoring
   - Incident Management
@@ -23,25 +36,54 @@ created: '2026-06-12'
 modified: '2026-06-12'
 specificationVersion: '0.19'
 apis:
-  - aid: betteruptime:uptime-api
-    name: Better Stack Uptime API
-    description: >-
-      The Better Stack Uptime API provides programmatic access to manage uptime
-      monitors, heartbeats, on-call schedules, incidents, status pages, integrations,
-      team members, and reporting. The API follows the JSON:API specification and
-      uses Bearer token authentication.
-    humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
-    baseURL: https://uptime.betterstack.com/api/v2
-    tags:
-      - Uptime Monitoring
-      - Incident Management
-      - Status Pages
-      - On-Call Scheduling
-    properties:
-      - type: Documentation
-        url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
-      - type: OpenAPI
-        url: openapi/betteruptime-uptime-api-openapi.yml
+- aid: betteruptime:betteruptime-heartbeats-api
+  name: Better Uptime Heartbeats API
+  description: Manage heartbeat monitors for cron jobs and background workers
+  humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  baseURL: https://uptime.betterstack.com/api/v2
+  tags:
+  - Heartbeats
+  properties:
+  - type: OpenAPI
+    url: openapi/betteruptime-heartbeats-api-openapi.yml
+  - type: Documentation
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+- aid: betteruptime:betteruptime-incidents-api
+  name: Better Uptime Incidents API
+  description: View and manage incidents triggered by monitors
+  humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  baseURL: https://uptime.betterstack.com/api/v2
+  tags:
+  - Incidents
+  properties:
+  - type: OpenAPI
+    url: openapi/betteruptime-incidents-api-openapi.yml
+  - type: Documentation
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+- aid: betteruptime:betteruptime-monitors-api
+  name: Better Uptime Monitors API
+  description: Manage uptime monitors for websites and services
+  humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  baseURL: https://uptime.betterstack.com/api/v2
+  tags:
+  - Monitors
+  properties:
+  - type: OpenAPI
+    url: openapi/betteruptime-monitors-api-openapi.yml
+  - type: Documentation
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+- aid: betteruptime:betteruptime-status-pages-api
+  name: Better Uptime Status Pages API
+  description: Manage public status pages for communicating service health
+  humanURL: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
+  baseURL: https://uptime.betterstack.com/api/v2
+  tags:
+  - Status Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/betteruptime-status-pages-api-openapi.yml
+  - type: Documentation
+    url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
 common:
   - type: AgenticAccess
     url: agentic-access/betteruptime-agentic-access.yml
