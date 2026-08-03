@@ -1,0 +1,20 @@
+{
+  "provider": "betteruptime",
+  "sources": [
+    "betteruptime-heartbeats-api-openapi.yml",
+    "betteruptime-incidents-api-openapi.yml",
+    "betteruptime-monitors-api-openapi.yml",
+    "betteruptime-status-pages-api-openapi.yml"
+  ],
+  "outputs": [
+    "betteruptime-heartbeats-api-openapi.yml",
+    "betteruptime-incidents-api-openapi.yml",
+    "betteruptime-monitors-api-openapi.yml",
+    "betteruptime-status-pages-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
