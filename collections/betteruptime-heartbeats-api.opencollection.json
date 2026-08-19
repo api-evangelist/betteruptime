@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Better Stack Uptime Heartbeats API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Heartbeats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List heartbeats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uptime.betterstack.com/api/v2/heartbeats",
+            "params": [
+              {
+                "name": "team_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team name"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of all heartbeat monitors."
+        },
+        {
+          "info": {
+            "name": "Create a heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://uptime.betterstack.com/api/v2/heartbeats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new heartbeat monitor."
+        },
+        {
+          "info": {
+            "name": "Get a heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uptime.betterstack.com/api/v2/heartbeats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ]
+          },
+          "docs": "Returns a single heartbeat by ID."
+        },
+        {
+          "info": {
+            "name": "Update a heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://uptime.betterstack.com/api/v2/heartbeats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing heartbeat monitor."
+        },
+        {
+          "info": {
+            "name": "Delete a heartbeat",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://uptime.betterstack.com/api/v2/heartbeats/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource identifier"
+              }
+            ]
+          },
+          "docs": "Deletes an existing heartbeat monitor."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Better Stack Uptime Heartbeats Incidents API",
+    "version": "v2"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Incidents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://uptime.betterstack.com/api/v2/incidents",
+            "params": [
+              {
+                "name": "team_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by team name"
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Start date for filtering (YYYY-MM-DD)"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "End date for filtering (YYYY-MM-DD)"
+              },
+              {
+                "name": "monitor_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by monitor ID"
+              },
+              {
+                "name": "heartbeat_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by heartbeat ID"
+              },
+              {
+                "name": "resolved",
+                "value": "",
+                "type": "query",
+                "description": "Filter by resolved status"
+              },
+              {
+                "name": "acknowledged",
+                "value": "",
+                "type": "query",
+                "description": "Filter by acknowledged status"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Page number for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of all incidents with optional filtering."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

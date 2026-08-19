@@ -1,0 +1,292 @@
+{
+  "item": [
+    {
+      "id": "732f7a7a-84e9-4e14-a31d-73bb26f7a11d",
+      "name": "Incidents",
+      "description": {
+        "content": "View and manage incidents triggered by monitors",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be9af44e-ca6b-4a3c-875c-b7a783e2744e",
+          "name": "List incidents",
+          "request": {
+            "name": "List incidents",
+            "description": {
+              "content": "Returns a list of all incidents with optional filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "api",
+                "v3",
+                "incidents"
+              ],
+              "host": [
+                "uptime",
+                "betterstack",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "team_name",
+                  "value": "<string>",
+                  "description": "Filter by team name"
+                },
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start date for filtering (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End date for filtering (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "monitor_id",
+                  "value": "<string>",
+                  "description": "Filter by monitor ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "heartbeat_id",
+                  "value": "<string>",
+                  "description": "Filter by heartbeat ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "resolved",
+                  "value": "<boolean>",
+                  "description": "Filter by resolved status"
+                },
+                {
+                  "disabled": false,
+                  "key": "acknowledged",
+                  "value": "<boolean>",
+                  "description": "Filter by acknowledged status"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "19acf023-6e1e-458b-bb0e-0dab169922a0",
+              "name": "A list of incidents",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v3",
+                    "incidents"
+                  ],
+                  "host": [
+                    "uptime",
+                    "betterstack",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "monitor_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "heartbeat_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"incident\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"cause\": \"string\",\n        \"status\": \"string\",\n        \"started_at\": \"2012-08-06T05:11:06.481Z\",\n        \"acknowledged_at\": \"2026-05-21T09:30:18.665Z\",\n        \"resolved_at\": \"2020-02-03T08:38:12.138Z\",\n        \"acknowledged_by\": \"string\",\n        \"resolved_by\": \"string\",\n        \"team_name\": \"string\",\n        \"url\": \"https://Sz.iueHaoaahsfqOQRY\",\n        \"http_method\": \"string\",\n        \"call\": false,\n        \"sms\": true,\n        \"email\": false,\n        \"push\": false,\n        \"regions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"response_content\": \"string\",\n        \"screenshot_url\": \"http://MlnqmdEuwaNiaSMOwOgiBQqgLFi.lxibfg+Z6HEJO9LVmVdfxHtXJfU4pU6shD\",\n        \"metadata\": {\n          \"key_0\": 7908.357616283685,\n          \"key_1\": 5134.414551137231,\n          \"key_2\": 3522.0852795941037\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"incident\",\n      \"attributes\": {\n        \"name\": \"string\",\n        \"cause\": \"string\",\n        \"status\": \"string\",\n        \"started_at\": \"1998-12-26T04:09:29.131Z\",\n        \"acknowledged_at\": \"1963-04-03T21:02:26.221Z\",\n        \"resolved_at\": \"1990-11-04T07:10:02.061Z\",\n        \"acknowledged_by\": \"string\",\n        \"resolved_by\": \"string\",\n        \"team_name\": \"string\",\n        \"url\": \"http://qj.ouxspt7vAY2taeFPUxJ9vDSWWmX.+USg.EYKFbYi\",\n        \"http_method\": \"string\",\n        \"call\": true,\n        \"sms\": true,\n        \"email\": true,\n        \"push\": true,\n        \"regions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"response_content\": \"string\",\n        \"screenshot_url\": \"http://yVF.qtmLX5kcE.FNW9NTP8tUELBCil,FBkadvPaAJE7x-a\",\n        \"metadata\": {\n          \"key_0\": \"string\",\n          \"key_1\": 4022.276652470622,\n          \"key_2\": true\n        }\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"http://csnBvlwAvZYLuWlDRXlQyYWUuudESwN.eeC,w3TQiAUakQDe7\",\n    \"last\": \"https://xfrZkyQvPHwJZSGhZOkImZIBY.vusIxdu4V2tsVDBAhOJ3YMXsz,2FBnha1CuyKD\",\n    \"prev\": \"https://DqqsEiJ.wvor7lvzs+xrXHU,nWenQawhdwcPRAzuSu\",\n    \"next\": \"http://AwYNbBenEwdELy.mvrn4lL2BV.31OugX+xsstnkaYusmDz.A0qtYqJ1aEGsFUxVKn+io0\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96a7df22-4be1-49fa-9f81-8c5ee3a119d3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "api",
+                    "v3",
+                    "incidents"
+                  ],
+                  "host": [
+                    "uptime",
+                    "betterstack",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "from",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "monitor_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "heartbeat_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resolved",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "acknowledged",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://uptime.betterstack.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd47ef84-e608-4075-b67c-9db41a923153",
+    "name": "Better Stack Uptime Heartbeats Incidents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,643 @@
+{
+  "item": [
+    {
+      "id": "bc59991b-829d-486e-91b0-da4cc27ba678",
+      "name": "Heartbeats",
+      "description": {
+        "content": "Manage heartbeat monitors for cron jobs and background workers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c7ca349-3c9f-437a-b0d3-850b5abb82d7",
+          "name": "List heartbeats",
+          "request": {
+            "name": "List heartbeats",
+            "description": {
+              "content": "Returns a paginated list of all heartbeat monitors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "heartbeats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "team_name",
+                  "value": "<string>",
+                  "description": "Filter by team name"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "Page number for pagination"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "439867a7-dd4f-4719-ae0b-a79d1baed7a7",
+              "name": "A list of heartbeats",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"heartbeat\",\n      \"attributes\": {\n        \"url\": \"https://synRsDZmNGlqCRs.covhEXIRS+\",\n        \"name\": \"string\",\n        \"period\": 7592,\n        \"grace\": 7013,\n        \"call\": true,\n        \"sms\": false,\n        \"email\": true,\n        \"push\": false,\n        \"team_wait\": 7566,\n        \"heartbeat_group_id\": \"string\",\n        \"team_name\": \"string\",\n        \"paused_at\": \"2010-03-26T10:38:54.454Z\",\n        \"server_timezone\": \"string\",\n        \"maintenance_from\": \"string\",\n        \"maintenance_to\": \"string\",\n        \"maintenance_timezone\": \"string\",\n        \"maintenance_days\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"up\",\n        \"created_at\": \"1999-11-28T02:38:30.696Z\",\n        \"updated_at\": \"2002-09-10T21:25:04.383Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"heartbeat\",\n      \"attributes\": {\n        \"url\": \"http://ClVtovxMIttIimq.fzntS60BbEwWOWgoWmbgiIE4yq4cYLKZuSKW2rqE31S-dIA\",\n        \"name\": \"string\",\n        \"period\": 6356,\n        \"grace\": 2556,\n        \"call\": false,\n        \"sms\": false,\n        \"email\": false,\n        \"push\": true,\n        \"team_wait\": 147,\n        \"heartbeat_group_id\": \"string\",\n        \"team_name\": \"string\",\n        \"paused_at\": \"1992-09-09T20:29:26.490Z\",\n        \"server_timezone\": \"string\",\n        \"maintenance_from\": \"string\",\n        \"maintenance_to\": \"string\",\n        \"maintenance_timezone\": \"string\",\n        \"maintenance_days\": [\n          \"string\",\n          \"string\"\n        ],\n        \"status\": \"pending\",\n        \"created_at\": \"1972-04-30T14:10:31.226Z\",\n        \"updated_at\": \"2005-01-27T20:31:49.080Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"http://ulRuerEqKXyxdKmCKCGWUdI.ottla8rXUk+MA\",\n    \"last\": \"https://BgryCelugbcgbQsVHtBdkRlXJlClGEhg.vsSFsvNY0VUfsYDpV0CiOgqxzYupb6dEY0bvuELPD3R98JKP3tdCAai2R\",\n    \"prev\": \"https://QGhEDVlLgoRUczWPO.wktliNCX4EmPhso7P6w+s8\",\n    \"next\": \"http://paKDzBGNRpztiGqHaKcIVFGD.fbeiBbn5KtlzdZRvVpeTeXYzRs3Iu9nsTCM6\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d69d515-ec10-412e-8f5a-78e602a2619b",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "769fd115-82c0-4402-8932-ce8039e2ebce",
+          "name": "Create a heartbeat",
+          "request": {
+            "name": "Create a heartbeat",
+            "description": {
+              "content": "Creates a new heartbeat monitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "heartbeats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"grace\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"team_wait\": \"<integer>\",\n  \"heartbeat_group_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "60315bb8-64e2-458b-855c-af1712726642",
+              "name": "Heartbeat created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"grace\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"team_wait\": \"<integer>\",\n  \"heartbeat_group_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"heartbeat\",\n    \"attributes\": {\n      \"url\": \"http://AhLzCGlvUrRXflPDZwruKDfAgMpSd.tzffb1PmhSn2E5l\",\n      \"name\": \"string\",\n      \"period\": 8805,\n      \"grace\": 2930,\n      \"call\": true,\n      \"sms\": true,\n      \"email\": false,\n      \"push\": true,\n      \"team_wait\": 7939,\n      \"heartbeat_group_id\": \"string\",\n      \"team_name\": \"string\",\n      \"paused_at\": \"1950-09-14T19:16:47.086Z\",\n      \"server_timezone\": \"string\",\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"paused\",\n      \"created_at\": \"1984-08-30T16:54:38.608Z\",\n      \"updated_at\": \"1970-08-28T20:50:13.404Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136f94f0-ef1d-45b7-a3dc-e5d2f867b0b5",
+          "name": "Get a heartbeat",
+          "request": {
+            "name": "Get a heartbeat",
+            "description": {
+              "content": "Returns a single heartbeat by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "heartbeats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ea6c6ca-52ee-477c-b057-932ee07a69aa",
+              "name": "A single heartbeat",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"heartbeat\",\n    \"attributes\": {\n      \"url\": \"http://AhLzCGlvUrRXflPDZwruKDfAgMpSd.tzffb1PmhSn2E5l\",\n      \"name\": \"string\",\n      \"period\": 8805,\n      \"grace\": 2930,\n      \"call\": true,\n      \"sms\": true,\n      \"email\": false,\n      \"push\": true,\n      \"team_wait\": 7939,\n      \"heartbeat_group_id\": \"string\",\n      \"team_name\": \"string\",\n      \"paused_at\": \"1950-09-14T19:16:47.086Z\",\n      \"server_timezone\": \"string\",\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"paused\",\n      \"created_at\": \"1984-08-30T16:54:38.608Z\",\n      \"updated_at\": \"1970-08-28T20:50:13.404Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33c85d49-7d2d-4873-a3b6-970833b4b414",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fbaa2af-277e-4195-8314-58eedfd21de5",
+          "name": "Update a heartbeat",
+          "request": {
+            "name": "Update a heartbeat",
+            "description": {
+              "content": "Updates an existing heartbeat monitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "heartbeats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"grace\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"team_wait\": \"<integer>\",\n  \"heartbeat_group_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "594984bf-4f5e-4871-8a18-ed3bf8c3d005",
+              "name": "Heartbeat updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"period\": \"<integer>\",\n  \"grace\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"team_wait\": \"<integer>\",\n  \"heartbeat_group_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"heartbeat\",\n    \"attributes\": {\n      \"url\": \"http://AhLzCGlvUrRXflPDZwruKDfAgMpSd.tzffb1PmhSn2E5l\",\n      \"name\": \"string\",\n      \"period\": 8805,\n      \"grace\": 2930,\n      \"call\": true,\n      \"sms\": true,\n      \"email\": false,\n      \"push\": true,\n      \"team_wait\": 7939,\n      \"heartbeat_group_id\": \"string\",\n      \"team_name\": \"string\",\n      \"paused_at\": \"1950-09-14T19:16:47.086Z\",\n      \"server_timezone\": \"string\",\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"status\": \"paused\",\n      \"created_at\": \"1984-08-30T16:54:38.608Z\",\n      \"updated_at\": \"1970-08-28T20:50:13.404Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9640aab7-aa29-4f55-bee8-60c57173215b",
+          "name": "Delete a heartbeat",
+          "request": {
+            "name": "Delete a heartbeat",
+            "description": {
+              "content": "Deletes an existing heartbeat monitor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "heartbeats",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource identifier"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8569383-339a-43e4-9990-1ca5c82bb32c",
+              "name": "Heartbeat deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "heartbeats",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://uptime.betterstack.com/api/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7debfbb-8721-40e7-906e-e1be9dffb044",
+    "name": "Better Stack Uptime Heartbeats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
+      "type": "text/plain"
+    }
+  }
+}
