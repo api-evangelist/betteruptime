@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Better Stack Uptime Heartbeats API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
@@ -118,7 +118,90 @@ paths:
         '204':
           description: Heartbeat deleted
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    HeartbeatResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HeartbeatResource'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+    HeartbeatCreateRequest:
+      type: object
+      required:
+      - name
+      - period
+      - grace
+      properties:
+        name:
+          type: string
+        period:
+          type: integer
+        grace:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        team_wait:
+          type: integer
+        heartbeat_group_id:
+          type: string
+    HeartbeatListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/HeartbeatResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     HeartbeatResource:
       type: object
       properties:
@@ -159,17 +242,20 @@ components:
           type: integer
           description: Escalation delay in seconds
         heartbeat_group_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         team_name:
           type: string
         paused_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         server_timezone:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         maintenance_from:
           type: string
         maintenance_to:
@@ -196,87 +282,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    HeartbeatResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/HeartbeatResource'
-    HeartbeatCreateRequest:
-      type: object
-      required:
-      - name
-      - period
-      - grace
-      properties:
-        name:
-          type: string
-        period:
-          type: integer
-        grace:
-          type: integer
-        call:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-        push:
-          type: boolean
-        team_wait:
-          type: integer
-        heartbeat_group_id:
-          type: string
-    HeartbeatListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/HeartbeatResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-          nullable: true
-        next:
-          type: string
-          format: uri
-          nullable: true
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id

@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Better Stack Uptime Heartbeats Incidents API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
@@ -83,25 +83,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    IncidentResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - incident
-        attributes:
-          $ref: '#/components/schemas/IncidentAttributes'
     IncidentListResponse:
       type: object
       properties:
@@ -123,6 +105,25 @@ components:
                 type: string
               detail:
                 type: string
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
     IncidentAttributes:
       type: object
       properties:
@@ -139,19 +140,23 @@ components:
           type: string
           format: date-time
         acknowledged_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         resolved_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         acknowledged_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         resolved_by:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         team_name:
           type: string
         url:
@@ -172,32 +177,35 @@ components:
           items:
             type: string
         response_content:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         screenshot_url:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uri
-          nullable: true
         metadata:
           type: object
           additionalProperties: true
-    Pagination:
+    IncidentResource:
       type: object
       properties:
-        first:
+        id:
           type: string
-          format: uri
-        last:
+        type:
           type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-          nullable: true
-        next:
-          type: string
-          format: uri
-          nullable: true
+          enum:
+          - incident
+        attributes:
+          $ref: '#/components/schemas/IncidentAttributes'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http

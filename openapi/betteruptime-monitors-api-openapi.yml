@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Better Stack Uptime Heartbeats Monitors API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
@@ -134,26 +134,16 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UnprocessableEntity:
-      description: Validation errors
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    MonitorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     MonitorAttributes:
       type: object
       properties:
@@ -179,8 +169,9 @@ components:
           - playwright
           description: The type of check to perform
         monitor_group_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Associated monitor group ID
         status:
           type: string
@@ -193,9 +184,10 @@ components:
           - maintenance
           readOnly: true
         last_checked_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
         check_frequency:
           type: integer
@@ -228,23 +220,27 @@ components:
           type: integer
           description: Escalation delay in seconds
         policy_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Alert policy ID
         expiration_policy_id:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: SSL/domain expiration alert policy ID
         verify_ssl:
           type: boolean
           description: Monitor SSL certificate validity
         ssl_expiration:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Alert days before SSL certificate expiry
         domain_expiration:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Alert days before domain expiry
         regions:
           type: array
@@ -266,12 +262,14 @@ components:
             type: string
           description: Days of week for maintenance window
         proxy_host:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Proxy host for check requests
         proxy_port:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Proxy port for check requests
         request_headers:
           type: array
@@ -284,8 +282,9 @@ components:
                 type: string
           description: Custom HTTP request headers
         request_body:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Custom HTTP request body
         expected_status_codes:
           type: array
@@ -293,16 +292,19 @@ components:
             type: integer
           description: HTTP status codes that indicate success
         required_keyword:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Keyword that must be present in the response
         port:
-          type: integer
-          nullable: true
+          type:
+          - integer
+          - 'null'
           description: Port number for TCP/UDP/SMTP/POP/IMAP checks
         playwright_script:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           description: Playwright script for synthetic monitoring
         created_at:
           type: string
@@ -313,15 +315,42 @@ components:
           format: date-time
           readOnly: true
         paused_at:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
           readOnly: true
-    MonitorResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/MonitorResource'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
     MonitorCreateRequest:
       type: object
       required:
@@ -392,44 +421,11 @@ components:
           type: string
         port:
           type: integer
-    MonitorListResponse:
+    MonitorResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitorResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-          nullable: true
-        next:
-          type: string
-          format: uri
-          nullable: true
+          $ref: '#/components/schemas/MonitorResource'
     MonitorResource:
       type: object
       properties:
@@ -442,6 +438,25 @@ components:
           - monitor
         attributes:
           $ref: '#/components/schemas/MonitorAttributes'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    UnprocessableEntity:
+      description: Validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id

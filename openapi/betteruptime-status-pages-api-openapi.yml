@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Better Stack Uptime Heartbeats Status Pages API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
@@ -118,7 +118,76 @@ paths:
         '204':
           description: Status page deleted
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    StatusPageResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/StatusPageResource'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+    StatusPageResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - status_page
+        attributes:
+          $ref: '#/components/schemas/StatusPageAttributes'
+    StatusPageListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPageResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     StatusPageCreateRequest:
       type: object
       required:
@@ -152,60 +221,6 @@ components:
           type: boolean
         history:
           type: integer
-    StatusPageListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusPageResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    StatusPageResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - status_page
-        attributes:
-          $ref: '#/components/schemas/StatusPageAttributes'
-    StatusPageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StatusPageResource'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type: string
-          format: uri
-          nullable: true
-        next:
-          type: string
-          format: uri
-          nullable: true
     StatusPageAttributes:
       type: object
       properties:
@@ -217,8 +232,9 @@ components:
         subdomain:
           type: string
         custom_domain:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         timezone:
           type: string
         theme:
@@ -258,19 +274,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id
