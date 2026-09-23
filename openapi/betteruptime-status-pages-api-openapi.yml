@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Better Stack Uptime Heartbeats Status Pages API
+  title: Better Stack Uptime Status Pages API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
   version: v2
   contact:
@@ -118,56 +118,7 @@ paths:
         '204':
           description: Status page deleted
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    StatusPageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StatusPageResource'
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
     StatusPageResource:
       type: object
       properties:
@@ -179,15 +130,11 @@ components:
           - status_page
         attributes:
           $ref: '#/components/schemas/StatusPageAttributes'
-    StatusPageListResponse:
+    StatusPageResponse:
       type: object
       properties:
         data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusPageResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+          $ref: '#/components/schemas/StatusPageResource'
     StatusPageCreateRequest:
       type: object
       required:
@@ -221,6 +168,34 @@ components:
           type: boolean
         history:
           type: integer
+    StatusPageListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPageResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
     StatusPageAttributes:
       type: object
       properties:
@@ -274,6 +249,31 @@ components:
           type: string
           format: date-time
           readOnly: true
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id

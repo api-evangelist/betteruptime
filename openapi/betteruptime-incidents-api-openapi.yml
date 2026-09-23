@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Better Stack Uptime Heartbeats Incidents API
+  title: Better Stack Uptime Incidents API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
   version: v2
   contact:
@@ -84,46 +84,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    IncidentListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/IncidentResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
     IncidentAttributes:
       type: object
       properties:
@@ -188,6 +148,34 @@ components:
         metadata:
           type: object
           additionalProperties: true
+    IncidentListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncidentResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
     IncidentResource:
       type: object
       properties:
@@ -199,6 +187,18 @@ components:
           - incident
         attributes:
           $ref: '#/components/schemas/IncidentAttributes'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
   responses:
     Unauthorized:
       description: Authentication failed

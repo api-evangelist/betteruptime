@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Better Stack Uptime Heartbeats Monitors API
+  title: Better Stack Uptime Monitors API
   description: The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.
   version: v2
   contact:
@@ -135,15 +135,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MonitorListResponse:
+    MonitorResource:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitorResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+        id:
+          type: string
+          description: Monitor identifier
+        type:
+          type: string
+          enum:
+          - monitor
+        attributes:
+          $ref: '#/components/schemas/MonitorAttributes'
     MonitorAttributes:
       type: object
       properties:
@@ -320,18 +323,20 @@ components:
           - 'null'
           format: date-time
           readOnly: true
-    ErrorResponse:
+    MonitorResponse:
       type: object
       properties:
-        errors:
+        data:
+          $ref: '#/components/schemas/MonitorResource'
+    MonitorListResponse:
+      type: object
+      properties:
+        data:
           type: array
           items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
+            $ref: '#/components/schemas/MonitorResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     Pagination:
       type: object
       properties:
@@ -421,23 +426,18 @@ components:
           type: string
         port:
           type: integer
-    MonitorResponse:
+    ErrorResponse:
       type: object
       properties:
-        data:
-          $ref: '#/components/schemas/MonitorResource'
-    MonitorResource:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Monitor identifier
-        type:
-          type: string
-          enum:
-          - monitor
-        attributes:
-          $ref: '#/components/schemas/MonitorAttributes'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
   responses:
     Unauthorized:
       description: Authentication failed
