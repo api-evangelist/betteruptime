@@ -119,31 +119,26 @@ paths:
           description: Heartbeat deleted
 components:
   schemas:
-    HeartbeatCreateRequest:
+    HeartbeatResource:
       type: object
-      required:
-      - name
-      - period
-      - grace
       properties:
-        name:
+        id:
           type: string
-        period:
-          type: integer
-        grace:
-          type: integer
-        call:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-        push:
-          type: boolean
-        team_wait:
-          type: integer
-        heartbeat_group_id:
+        type:
           type: string
+          enum:
+          - heartbeat
+        attributes:
+          $ref: '#/components/schemas/HeartbeatAttributes'
+    HeartbeatListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/HeartbeatResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     HeartbeatAttributes:
       type: object
       properties:
@@ -213,26 +208,43 @@ components:
           type: string
           format: date-time
           readOnly: true
-    HeartbeatResource:
+    HeartbeatCreateRequest:
+      type: object
+      required:
+      - name
+      - period
+      - grace
+      properties:
+        name:
+          type: string
+        period:
+          type: integer
+        grace:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        team_wait:
+          type: integer
+        heartbeat_group_id:
+          type: string
+    ErrorResponse:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - heartbeat
-        attributes:
-          $ref: '#/components/schemas/HeartbeatAttributes'
-    HeartbeatListResponse:
-      type: object
-      properties:
-        data:
+        errors:
           type: array
           items:
-            $ref: '#/components/schemas/HeartbeatResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
     Pagination:
       type: object
       properties:
@@ -257,27 +269,15 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/HeartbeatResource'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
   responses:
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:

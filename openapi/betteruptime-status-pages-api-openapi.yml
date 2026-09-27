@@ -119,22 +119,6 @@ paths:
           description: Status page deleted
 components:
   schemas:
-    StatusPageResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - status_page
-        attributes:
-          $ref: '#/components/schemas/StatusPageAttributes'
-    StatusPageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StatusPageResource'
     StatusPageCreateRequest:
       type: object
       required:
@@ -177,25 +161,29 @@ components:
             $ref: '#/components/schemas/StatusPageResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    Pagination:
+    ErrorResponse:
       type: object
       properties:
-        first:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    StatusPageResource:
+      type: object
+      properties:
+        id:
           type: string
-          format: uri
-        last:
+        type:
           type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
+          enum:
+          - status_page
+        attributes:
+          $ref: '#/components/schemas/StatusPageAttributes'
     StatusPageAttributes:
       type: object
       properties:
@@ -249,27 +237,39 @@ components:
           type: string
           format: date-time
           readOnly: true
-    ErrorResponse:
+    StatusPageResponse:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
+        data:
+          $ref: '#/components/schemas/StatusPageResource'
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
   responses:
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:

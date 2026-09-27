@@ -147,6 +147,121 @@ components:
           - monitor
         attributes:
           $ref: '#/components/schemas/MonitorAttributes'
+    MonitorCreateRequest:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+        pronounceable_name:
+          type: string
+        monitor_type:
+          type: string
+          enum:
+          - status
+          - keyword
+          - ping
+          - tcp
+          - udp
+          - smtp
+          - pop
+          - imap
+          - dns
+          - playwright
+        check_frequency:
+          type: integer
+        request_timeout:
+          type: integer
+        recovery_period:
+          type: integer
+        confirmation_period:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        regions:
+          type: array
+          items:
+            type: string
+        verify_ssl:
+          type: boolean
+        ssl_expiration:
+          type: integer
+        domain_expiration:
+          type: integer
+        expected_status_codes:
+          type: array
+          items:
+            type: integer
+        required_keyword:
+          type: string
+        request_headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        request_body:
+          type: string
+        policy_id:
+          type: string
+        port:
+          type: integer
+    MonitorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MonitorResource'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+    MonitorListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitorResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     MonitorAttributes:
       type: object
       properties:
@@ -323,130 +438,15 @@ components:
           - 'null'
           format: date-time
           readOnly: true
-    MonitorResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/MonitorResource'
-    MonitorListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitorResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-    MonitorCreateRequest:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-        pronounceable_name:
-          type: string
-        monitor_type:
-          type: string
-          enum:
-          - status
-          - keyword
-          - ping
-          - tcp
-          - udp
-          - smtp
-          - pop
-          - imap
-          - dns
-          - playwright
-        check_frequency:
-          type: integer
-        request_timeout:
-          type: integer
-        recovery_period:
-          type: integer
-        confirmation_period:
-          type: integer
-        call:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-        push:
-          type: boolean
-        regions:
-          type: array
-          items:
-            type: string
-        verify_ssl:
-          type: boolean
-        ssl_expiration:
-          type: integer
-        domain_expiration:
-          type: integer
-        expected_status_codes:
-          type: array
-          items:
-            type: integer
-        required_keyword:
-          type: string
-        request_headers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-        request_body:
-          type: string
-        policy_id:
-          type: string
-        port:
-          type: integer
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
   responses:
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:
