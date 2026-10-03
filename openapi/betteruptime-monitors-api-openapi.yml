@@ -135,105 +135,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    MonitorResource:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Monitor identifier
-        type:
-          type: string
-          enum:
-          - monitor
-        attributes:
-          $ref: '#/components/schemas/MonitorAttributes'
-    MonitorCreateRequest:
-      type: object
-      required:
-      - url
-      properties:
-        url:
-          type: string
-          format: uri
-        pronounceable_name:
-          type: string
-        monitor_type:
-          type: string
-          enum:
-          - status
-          - keyword
-          - ping
-          - tcp
-          - udp
-          - smtp
-          - pop
-          - imap
-          - dns
-          - playwright
-        check_frequency:
-          type: integer
-        request_timeout:
-          type: integer
-        recovery_period:
-          type: integer
-        confirmation_period:
-          type: integer
-        call:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-        push:
-          type: boolean
-        regions:
-          type: array
-          items:
-            type: string
-        verify_ssl:
-          type: boolean
-        ssl_expiration:
-          type: integer
-        domain_expiration:
-          type: integer
-        expected_status_codes:
-          type: array
-          items:
-            type: integer
-        required_keyword:
-          type: string
-        request_headers:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              value:
-                type: string
-        request_body:
-          type: string
-        policy_id:
-          type: string
-        port:
-          type: integer
-    MonitorResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/MonitorResource'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
     Pagination:
       type: object
       properties:
@@ -253,6 +154,18 @@ components:
           - string
           - 'null'
           format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
     MonitorListResponse:
       type: object
       properties:
@@ -262,6 +175,18 @@ components:
             $ref: '#/components/schemas/MonitorResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    MonitorResource:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Monitor identifier
+        type:
+          type: string
+          enum:
+          - monitor
+        attributes:
+          $ref: '#/components/schemas/MonitorAttributes'
     MonitorAttributes:
       type: object
       properties:
@@ -438,7 +363,88 @@ components:
           - 'null'
           format: date-time
           readOnly: true
+    MonitorCreateRequest:
+      type: object
+      required:
+      - url
+      properties:
+        url:
+          type: string
+          format: uri
+        pronounceable_name:
+          type: string
+        monitor_type:
+          type: string
+          enum:
+          - status
+          - keyword
+          - ping
+          - tcp
+          - udp
+          - smtp
+          - pop
+          - imap
+          - dns
+          - playwright
+        check_frequency:
+          type: integer
+        request_timeout:
+          type: integer
+        recovery_period:
+          type: integer
+        confirmation_period:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        regions:
+          type: array
+          items:
+            type: string
+        verify_ssl:
+          type: boolean
+        ssl_expiration:
+          type: integer
+        domain_expiration:
+          type: integer
+        expected_status_codes:
+          type: array
+          items:
+            type: integer
+        required_keyword:
+          type: string
+        request_headers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        request_body:
+          type: string
+        policy_id:
+          type: string
+        port:
+          type: integer
+    MonitorResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/MonitorResource'
   responses:
+    UnprocessableEntity:
+      description: Validation errors
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource not found
       content:
@@ -447,12 +453,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    UnprocessableEntity:
-      description: Validation errors
       content:
         application/json:
           schema:

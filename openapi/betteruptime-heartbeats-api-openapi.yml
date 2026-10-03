@@ -119,17 +119,42 @@ paths:
           description: Heartbeat deleted
 components:
   schemas:
-    HeartbeatResource:
+    Pagination:
       type: object
       properties:
-        id:
+        first:
           type: string
-        type:
+          format: uri
+        last:
           type: string
-          enum:
-          - heartbeat
-        attributes:
-          $ref: '#/components/schemas/HeartbeatAttributes'
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+    HeartbeatResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HeartbeatResource'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
     HeartbeatListResponse:
       type: object
       properties:
@@ -139,6 +164,31 @@ components:
             $ref: '#/components/schemas/HeartbeatResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    HeartbeatCreateRequest:
+      type: object
+      required:
+      - name
+      - period
+      - grace
+      properties:
+        name:
+          type: string
+        period:
+          type: integer
+        grace:
+          type: integer
+        call:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+        push:
+          type: boolean
+        team_wait:
+          type: integer
+        heartbeat_group_id:
+          type: string
     HeartbeatAttributes:
       type: object
       properties:
@@ -208,67 +258,25 @@ components:
           type: string
           format: date-time
           readOnly: true
-    HeartbeatCreateRequest:
-      type: object
-      required:
-      - name
-      - period
-      - grace
-      properties:
-        name:
-          type: string
-        period:
-          type: integer
-        grace:
-          type: integer
-        call:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-        push:
-          type: boolean
-        team_wait:
-          type: integer
-        heartbeat_group_id:
-          type: string
-    ErrorResponse:
+    HeartbeatResource:
       type: object
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    Pagination:
-      type: object
-      properties:
-        first:
+        id:
           type: string
-          format: uri
-        last:
+        type:
           type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
-    HeartbeatResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/HeartbeatResource'
+          enum:
+          - heartbeat
+        attributes:
+          $ref: '#/components/schemas/HeartbeatAttributes'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found
@@ -282,14 +290,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Resource identifier
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http

@@ -119,6 +119,48 @@ paths:
           description: Status page deleted
 components:
   schemas:
+    Pagination:
+      type: object
+      properties:
+        first:
+          type: string
+          format: uri
+        last:
+          type: string
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
+    StatusPageResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - status_page
+        attributes:
+          $ref: '#/components/schemas/StatusPageAttributes'
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
     StatusPageCreateRequest:
       type: object
       required:
@@ -152,38 +194,6 @@ components:
           type: boolean
         history:
           type: integer
-    StatusPageListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusPageResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
-    StatusPageResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - status_page
-        attributes:
-          $ref: '#/components/schemas/StatusPageAttributes'
     StatusPageAttributes:
       type: object
       properties:
@@ -237,30 +247,28 @@ components:
           type: string
           format: date-time
           readOnly: true
+    StatusPageListResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusPageResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
     StatusPageResponse:
       type: object
       properties:
         data:
           $ref: '#/components/schemas/StatusPageResource'
-    Pagination:
-      type: object
-      properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
   responses:
     NotFound:
       description: Resource not found
@@ -274,14 +282,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Resource identifier
-      schema:
-        type: string
   securitySchemes:
     BearerAuth:
       type: http
