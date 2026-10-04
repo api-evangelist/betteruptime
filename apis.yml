@@ -97,6 +97,9 @@ apis:
   - type: Documentation
     url: https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/
 common:
+  - type: CapabilityMap
+    url: capabilities/betteruptime-capability-edges.yml
+    name: Better Uptime Business Capability Map
   - type: AgenticAccess
     url: agentic-access/betteruptime-agentic-access.yml
   - type: TrustCenter
