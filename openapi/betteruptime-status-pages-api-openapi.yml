@@ -119,25 +119,11 @@ paths:
           description: Status page deleted
 components:
   schemas:
-    Pagination:
+    StatusPageResponse:
       type: object
       properties:
-        first:
-          type: string
-          format: uri
-        last:
-          type: string
-          format: uri
-        prev:
-          type:
-          - string
-          - 'null'
-          format: uri
-        next:
-          type:
-          - string
-          - 'null'
-          format: uri
+        data:
+          $ref: '#/components/schemas/StatusPageResource'
     StatusPageResource:
       type: object
       properties:
@@ -161,39 +147,25 @@ components:
                 type: string
               detail:
                 type: string
-    StatusPageCreateRequest:
+    Pagination:
       type: object
-      required:
-      - company_name
-      - subdomain
       properties:
-        company_name:
-          type: string
-        company_url:
+        first:
           type: string
           format: uri
-        subdomain:
+        last:
           type: string
-        custom_domain:
-          type: string
-        timezone:
-          type: string
-        theme:
-          type: string
-          enum:
-          - light
-          - dark
-        layout:
-          type: string
-          enum:
-          - vertical
-          - horizontal
-        subscribable:
-          type: boolean
-        password_enabled:
-          type: boolean
-        history:
-          type: integer
+          format: uri
+        prev:
+          type:
+          - string
+          - 'null'
+          format: uri
+        next:
+          type:
+          - string
+          - 'null'
+          format: uri
     StatusPageAttributes:
       type: object
       properties:
@@ -247,6 +219,39 @@ components:
           type: string
           format: date-time
           readOnly: true
+    StatusPageCreateRequest:
+      type: object
+      required:
+      - company_name
+      - subdomain
+      properties:
+        company_name:
+          type: string
+        company_url:
+          type: string
+          format: uri
+        subdomain:
+          type: string
+        custom_domain:
+          type: string
+        timezone:
+          type: string
+        theme:
+          type: string
+          enum:
+          - light
+          - dark
+        layout:
+          type: string
+          enum:
+          - vertical
+          - horizontal
+        subscribable:
+          type: boolean
+        password_enabled:
+          type: boolean
+        history:
+          type: integer
     StatusPageListResponse:
       type: object
       properties:
@@ -256,11 +261,19 @@ components:
             $ref: '#/components/schemas/StatusPageResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
-    StatusPageResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/StatusPageResource'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id
@@ -269,19 +282,6 @@ components:
       description: Resource identifier
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http

@@ -118,7 +118,39 @@ paths:
         '204':
           description: Heartbeat deleted
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      description: Resource identifier
+      schema:
+        type: string
   schemas:
+    HeartbeatResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - heartbeat
+        attributes:
+          $ref: '#/components/schemas/HeartbeatAttributes'
     Pagination:
       type: object
       properties:
@@ -138,23 +170,6 @@ components:
           - string
           - 'null'
           format: uri
-    HeartbeatResponse:
-      type: object
-      properties:
-        data:
-          $ref: '#/components/schemas/HeartbeatResource'
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
     HeartbeatListResponse:
       type: object
       properties:
@@ -164,6 +179,11 @@ components:
             $ref: '#/components/schemas/HeartbeatResource'
         pagination:
           $ref: '#/components/schemas/Pagination'
+    HeartbeatResponse:
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/HeartbeatResource'
     HeartbeatCreateRequest:
       type: object
       required:
@@ -258,38 +278,18 @@ components:
           type: string
           format: date-time
           readOnly: true
-    HeartbeatResource:
+    ErrorResponse:
       type: object
       properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - heartbeat
-        attributes:
-          $ref: '#/components/schemas/HeartbeatAttributes'
-  parameters:
-    Id:
-      name: id
-      in: path
-      required: true
-      description: Resource identifier
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
   securitySchemes:
     BearerAuth:
       type: http
