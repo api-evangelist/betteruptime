@@ -83,13 +83,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     IncidentAttributes:
       type: object
@@ -155,6 +148,17 @@ components:
         metadata:
           type: object
           additionalProperties: true
+    IncidentResource:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+          enum:
+          - incident
+        attributes:
+          $ref: '#/components/schemas/IncidentAttributes'
     Pagination:
       type: object
       properties:
@@ -174,17 +178,6 @@ components:
           - string
           - 'null'
           format: uri
-    IncidentResource:
-      type: object
-      properties:
-        id:
-          type: string
-        type:
-          type: string
-          enum:
-          - incident
-        attributes:
-          $ref: '#/components/schemas/IncidentAttributes'
     IncidentListResponse:
       type: object
       properties:
@@ -206,6 +199,13 @@ components:
                 type: string
               detail:
                 type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http

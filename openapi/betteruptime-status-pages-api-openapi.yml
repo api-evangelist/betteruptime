@@ -135,18 +135,48 @@ components:
           - status_page
         attributes:
           $ref: '#/components/schemas/StatusPageAttributes'
-    ErrorResponse:
+    StatusPageListResponse:
       type: object
       properties:
-        errors:
+        data:
           type: array
           items:
-            type: object
-            properties:
-              title:
-                type: string
-              detail:
-                type: string
+            $ref: '#/components/schemas/StatusPageResource'
+        pagination:
+          $ref: '#/components/schemas/Pagination'
+    StatusPageCreateRequest:
+      type: object
+      required:
+      - company_name
+      - subdomain
+      properties:
+        company_name:
+          type: string
+        company_url:
+          type: string
+          format: uri
+        subdomain:
+          type: string
+        custom_domain:
+          type: string
+        timezone:
+          type: string
+        theme:
+          type: string
+          enum:
+          - light
+          - dark
+        layout:
+          type: string
+          enum:
+          - vertical
+          - horizontal
+        subscribable:
+          type: boolean
+        password_enabled:
+          type: boolean
+        history:
+          type: integer
     Pagination:
       type: object
       properties:
@@ -166,6 +196,18 @@ components:
           - string
           - 'null'
           format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              detail:
+                type: string
     StatusPageAttributes:
       type: object
       properties:
@@ -219,61 +261,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    StatusPageCreateRequest:
-      type: object
-      required:
-      - company_name
-      - subdomain
-      properties:
-        company_name:
-          type: string
-        company_url:
-          type: string
-          format: uri
-        subdomain:
-          type: string
-        custom_domain:
-          type: string
-        timezone:
-          type: string
-        theme:
-          type: string
-          enum:
-          - light
-          - dark
-        layout:
-          type: string
-          enum:
-          - vertical
-          - horizontal
-        subscribable:
-          type: boolean
-        password_enabled:
-          type: boolean
-        history:
-          type: integer
-    StatusPageListResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusPageResource'
-        pagination:
-          $ref: '#/components/schemas/Pagination'
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     Id:
       name: id
@@ -282,6 +269,19 @@ components:
       description: Resource identifier
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     BearerAuth:
       type: http
