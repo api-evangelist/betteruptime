@@ -1,184 +1,512 @@
 {
+  "info": {
+    "_postman_id": "1861b72e-1a05-4881-a6c5-1542617d21b5",
+    "name": "Better Stack Uptime Status Pages API",
+    "description": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:01:50.000Z",
+    "updatedAt": "2026-10-22T02:01:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1861b72e-1a05-4881-a6c5-1542617d21b5"
+  },
   "item": [
     {
-      "id": "8f9f63c9-212f-422d-afab-4446665e7423",
-      "name": "Status Pages",
-      "description": {
-        "content": "Manage public status pages for communicating service health",
-        "type": "text/plain"
-      },
+      "name": "status-pages",
       "item": [
         {
-          "id": "cca5eacf-6d68-416c-a191-4863fa66d075",
-          "name": "List status pages",
-          "request": {
-            "name": "List status pages",
-            "description": {
-              "content": "Returns a list of all your status pages.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "status-pages"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a status page",
+              "id": "013b242d-3dbb-4506-bd9d-7eaa2145aa62",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "22f6e374-178d-419e-aae2-c8b15c50b307",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Returns a single status page by ID."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "team_name",
-                  "value": "<string>",
-                  "description": "Filter by team name"
+                  "id": "a8598f36-c931-4a6e-be1c-2afcbffa2e39",
+                  "name": "A single status page",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/status-pages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "status-pages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"<string>\",\n      \"company_url\": \"<uri>\",\n      \"subdomain\": \"<string>\",\n      \"custom_domain\": \"<string,null>\",\n      \"timezone\": \"<string>\",\n      \"theme\": \"dark\",\n      \"layout\": \"horizontal\",\n      \"aggregate_state\": \"operational\",\n      \"subscribable\": \"<boolean>\",\n      \"password_enabled\": \"<boolean>\",\n      \"ip_allowlist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"history\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T02:01:51.000Z",
+                  "updatedAt": "2026-10-22T02:01:51.000Z",
+                  "uid": "35240-a8598f36-c931-4a6e-be1c-2afcbffa2e39"
                 },
                 {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "<integer>",
-                  "description": "Page number for pagination"
+                  "id": "d0654af5-f2b1-4022-a1d3-0cb0f132bb21",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/status-pages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "status-pages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:01:51.000Z",
+                  "updatedAt": "2026-10-22T02:01:51.000Z",
+                  "uid": "35240-d0654af5-f2b1-4022-a1d3-0cb0f132bb21"
                 }
               ],
-              "variable": []
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-013b242d-3dbb-4506-bd9d-7eaa2145aa62"
             },
+            {
+              "name": "Update a status page",
+              "id": "29e62c5f-52ec-4d41-8dc9-13f2b023848c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"dark\",\n  \"layout\": \"vertical\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "94758dda-06f0-4cd8-a440-4f68ed986415",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Updates an existing status page."
+              },
+              "response": [
+                {
+                  "id": "220af4c8-70ef-4b7b-abcf-196f0319aff1",
+                  "name": "Status page updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"dark\",\n  \"layout\": \"vertical\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/status-pages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "status-pages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"<string>\",\n      \"company_url\": \"<uri>\",\n      \"subdomain\": \"<string>\",\n      \"custom_domain\": \"<string,null>\",\n      \"timezone\": \"<string>\",\n      \"theme\": \"dark\",\n      \"layout\": \"horizontal\",\n      \"aggregate_state\": \"operational\",\n      \"subscribable\": \"<boolean>\",\n      \"password_enabled\": \"<boolean>\",\n      \"ip_allowlist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"history\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T02:01:51.000Z",
+                  "updatedAt": "2026-10-22T02:01:51.000Z",
+                  "uid": "35240-220af4c8-70ef-4b7b-abcf-196f0319aff1"
+                }
+              ],
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-29e62c5f-52ec-4d41-8dc9-13f2b023848c"
+            },
+            {
+              "name": "Delete a status page",
+              "id": "3f107d8a-2564-4dfa-a781-411a3cdf7488",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4671b824-e68d-4907-81b4-47f0ca4396eb",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Deletes an existing status page."
+              },
+              "response": [
+                {
+                  "id": "e7b91d35-78de-434a-92c0-06b26ae0bce9",
+                  "name": "Status page deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/status-pages/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "status-pages",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:01:51.000Z",
+                  "updatedAt": "2026-10-22T02:01:51.000Z",
+                  "uid": "35240-e7b91d35-78de-434a-92c0-06b26ae0bce9"
+                }
+              ],
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-3f107d8a-2564-4dfa-a781-411a3cdf7488"
+            }
+          ],
+          "id": "ddfe6f2f-bdcd-4925-9a03-7d384d5055f4",
+          "createdAt": "2026-10-22T02:01:51.000Z",
+          "updatedAt": "2026-10-22T02:01:51.000Z",
+          "uid": "35240-ddfe6f2f-bdcd-4925-9a03-7d384d5055f4"
+        },
+        {
+          "name": "List status pages",
+          "id": "c1665fb7-4939-4df5-aec5-8b88624acb89",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "ef0eba63-88a2-44f9-b1f4-094e68d82bf0",
-              "name": "A list of status pages",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "team_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"status_page\",\n      \"attributes\": {\n        \"company_name\": \"string\",\n        \"company_url\": \"https://sskWKXJahO.fmgFr.3B-\",\n        \"subdomain\": \"string\",\n        \"custom_domain\": \"string\",\n        \"timezone\": \"string\",\n        \"theme\": \"dark\",\n        \"layout\": \"vertical\",\n        \"aggregate_state\": \"degraded_performance\",\n        \"subscribable\": false,\n        \"password_enabled\": true,\n        \"ip_allowlist\": [\n          \"string\",\n          \"string\"\n        ],\n        \"history\": 2325,\n        \"created_at\": \"1968-08-01T01:50:58.899Z\",\n        \"updated_at\": \"2011-03-19T03:33:02.446Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"status_page\",\n      \"attributes\": {\n        \"company_name\": \"string\",\n        \"company_url\": \"https://pqBghsMMtUVYxdpXdlXPwj.swguz\",\n        \"subdomain\": \"string\",\n        \"custom_domain\": \"string\",\n        \"timezone\": \"string\",\n        \"theme\": \"light\",\n        \"layout\": \"vertical\",\n        \"aggregate_state\": \"degraded_performance\",\n        \"subscribable\": false,\n        \"password_enabled\": true,\n        \"ip_allowlist\": [\n          \"string\",\n          \"string\"\n        ],\n        \"history\": 6233,\n        \"created_at\": \"1985-03-04T08:51:27.759Z\",\n        \"updated_at\": \"2022-03-05T02:26:08.209Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"http://YelECbYHOwJniXvU.riTnCYDgiPDG8o.8pFdXtxRq8zJQcjOexoJpow,AKka,IU\",\n    \"last\": \"https://bDvQtUKwtmhoWRAE.nvuoyLkSbHAFF5Pk5Pxw6cGSXvxXRL7xZBdNJELxrOBQ6C2Jj4QiDDd4NtT-UChXmHcIn-5CV\",\n    \"prev\": \"https://bS.vbvP0HyYBgAbsTuCFycG-U0LF,mFPNxYE5.po6Ih,A2zvofH9TFXPUDY\",\n    \"next\": \"http://VFlAJsHLjZCaiOkleWhYZFhYcUqbrkKD.qwJWmhd7u3nbGSOkOIodHhsH3PmZ+bEZml2HifL4jW\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "de6daa17-6130-462d-b019-c598ccf6ab40",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "team_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "0f30c188-5e39-4ec6-bbaf-3377053bc3e0",
-          "name": "Create a status page",
-          "request": {
-            "name": "Create a status page",
-            "description": {
-              "content": "Creates a new status page.",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "status-pages"
-              ],
+              "raw": "{{baseUrl}}/status-pages?team_name=<string>&page=<integer>",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "status-pages"
+              ],
+              "query": [
+                {
+                  "description": "Filter by team name",
+                  "key": "team_name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ]
             },
+            "description": "Returns a list of all your status pages."
+          },
+          "response": [
+            {
+              "id": "94cc1b26-5873-4c57-aec6-146fa564e3b0",
+              "name": "A list of status pages",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages?team_name=<string>&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by team name",
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"status_page\",\n      \"attributes\": {\n        \"company_name\": \"<string>\",\n        \"company_url\": \"<uri>\",\n        \"subdomain\": \"<string>\",\n        \"custom_domain\": \"<string,null>\",\n        \"timezone\": \"<string>\",\n        \"theme\": \"light\",\n        \"layout\": \"horizontal\",\n        \"aggregate_state\": \"degraded_performance\",\n        \"subscribable\": \"<boolean>\",\n        \"password_enabled\": \"<boolean>\",\n        \"ip_allowlist\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": \"<integer>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"status_page\",\n      \"attributes\": {\n        \"company_name\": \"<string>\",\n        \"company_url\": \"<uri>\",\n        \"subdomain\": \"<string>\",\n        \"custom_domain\": \"<string,null>\",\n        \"timezone\": \"<string>\",\n        \"theme\": \"dark\",\n        \"layout\": \"vertical\",\n        \"aggregate_state\": \"partial_outage\",\n        \"subscribable\": \"<boolean>\",\n        \"password_enabled\": \"<boolean>\",\n        \"ip_allowlist\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"history\": \"<integer>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"prev\": \"<string,null-uri>\",\n    \"next\": \"<string,null-uri>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-94cc1b26-5873-4c57-aec6-146fa564e3b0"
+            },
+            {
+              "id": "0c0a4ef9-b09c-4c17-9797-b07104e83307",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages?team_name=<string>&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by team name",
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-0c0a4ef9-b09c-4c17-9797-b07104e83307"
+            }
+          ],
+          "createdAt": "2026-10-22T02:01:51.000Z",
+          "updatedAt": "2026-10-22T02:01:51.000Z",
+          "uid": "35240-c1665fb7-4939-4df5-aec5-8b88624acb89"
+        },
+        {
+          "name": "Create a status page",
+          "id": "65587f52-a7a7-4bee-b9de-8ff4cb14934d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -189,437 +517,94 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
+              "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"dark\",\n  \"layout\": \"vertical\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/status-pages",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "status-pages"
+              ]
+            },
+            "description": "Creates a new status page."
           },
           "response": [
             {
-              "id": "b8ecd709-52b9-4b3a-9116-2c1e8057d50a",
+              "id": "bb9abf93-bfaa-4620-8b5b-6f8f1ad2c1a2",
               "name": "Status page created",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
+                  "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"dark\",\n  \"layout\": \"vertical\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/status-pages",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "status-pages"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"string\",\n      \"company_url\": \"https://OdIDhlEyHWmjolrrY.faqiMfD51y5RbASKZoEvyLCP9sgLd.u\",\n      \"subdomain\": \"string\",\n      \"custom_domain\": \"string\",\n      \"timezone\": \"string\",\n      \"theme\": \"dark\",\n      \"layout\": \"vertical\",\n      \"aggregate_state\": \"degraded_performance\",\n      \"subscribable\": false,\n      \"password_enabled\": true,\n      \"ip_allowlist\": [\n        \"string\",\n        \"string\"\n      ],\n      \"history\": 3230,\n      \"created_at\": \"1966-04-23T20:09:19.685Z\",\n      \"updated_at\": \"1997-09-14T01:58:38.902Z\"\n    }\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"<string>\",\n      \"company_url\": \"<uri>\",\n      \"subdomain\": \"<string>\",\n      \"custom_domain\": \"<string,null>\",\n      \"timezone\": \"<string>\",\n      \"theme\": \"dark\",\n      \"layout\": \"horizontal\",\n      \"aggregate_state\": \"operational\",\n      \"subscribable\": \"<boolean>\",\n      \"password_enabled\": \"<boolean>\",\n      \"ip_allowlist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"history\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  }\n}",
+              "createdAt": "2026-10-22T02:01:51.000Z",
+              "updatedAt": "2026-10-22T02:01:51.000Z",
+              "uid": "35240-bb9abf93-bfaa-4620-8b5b-6f8f1ad2c1a2"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3163e568-1372-402e-8aa6-11b211312ed0",
-          "name": "Get a status page",
-          "request": {
-            "name": "Get a status page",
-            "description": {
-              "content": "Returns a single status page by ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "status-pages",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "00fd2d41-98ac-41fb-b193-bd83b7bf8c7d",
-              "name": "A single status page",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"string\",\n      \"company_url\": \"https://OdIDhlEyHWmjolrrY.faqiMfD51y5RbASKZoEvyLCP9sgLd.u\",\n      \"subdomain\": \"string\",\n      \"custom_domain\": \"string\",\n      \"timezone\": \"string\",\n      \"theme\": \"dark\",\n      \"layout\": \"vertical\",\n      \"aggregate_state\": \"degraded_performance\",\n      \"subscribable\": false,\n      \"password_enabled\": true,\n      \"ip_allowlist\": [\n        \"string\",\n        \"string\"\n      ],\n      \"history\": 3230,\n      \"created_at\": \"1966-04-23T20:09:19.685Z\",\n      \"updated_at\": \"1997-09-14T01:58:38.902Z\"\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2935a56e-b067-4da5-993b-5dd945879a9c",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "63bfd0f5-41a8-4745-93f0-d2f806316639",
-          "name": "Update a status page",
-          "request": {
-            "name": "Update a status page",
-            "description": {
-              "content": "Updates an existing status page.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "status-pages",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "fdc499fd-5736-4a55-bc8c-217a306f88f9",
-              "name": "Status page updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"company_name\": \"<string>\",\n  \"subdomain\": \"<string>\",\n  \"company_url\": \"<uri>\",\n  \"custom_domain\": \"<string>\",\n  \"timezone\": \"<string>\",\n  \"theme\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"subscribable\": \"<boolean>\",\n  \"password_enabled\": \"<boolean>\",\n  \"history\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"status_page\",\n    \"attributes\": {\n      \"company_name\": \"string\",\n      \"company_url\": \"https://OdIDhlEyHWmjolrrY.faqiMfD51y5RbASKZoEvyLCP9sgLd.u\",\n      \"subdomain\": \"string\",\n      \"custom_domain\": \"string\",\n      \"timezone\": \"string\",\n      \"theme\": \"dark\",\n      \"layout\": \"vertical\",\n      \"aggregate_state\": \"degraded_performance\",\n      \"subscribable\": false,\n      \"password_enabled\": true,\n      \"ip_allowlist\": [\n        \"string\",\n        \"string\"\n      ],\n      \"history\": 3230,\n      \"created_at\": \"1966-04-23T20:09:19.685Z\",\n      \"updated_at\": \"1997-09-14T01:58:38.902Z\"\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "5b0392df-2a80-4726-89f6-12b8056af8dc",
-          "name": "Delete a status page",
-          "request": {
-            "name": "Delete a status page",
-            "description": {
-              "content": "Deletes an existing status page.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "status-pages",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "2d3d4ec4-e24d-4158-adeb-f8527e77c4e6",
-              "name": "Status page deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "status-pages",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:01:51.000Z",
+          "updatedAt": "2026-10-22T02:01:51.000Z",
+          "uid": "35240-65587f52-a7a7-4bee-b9de-8ff4cb14934d"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://uptime.betterstack.com/api/v2",
-      "key": "baseUrl"
+      "id": "db13ebbf-c1e2-4109-a2a7-e281d391ef5a",
+      "createdAt": "2026-10-22T02:01:51.000Z",
+      "updatedAt": "2026-10-22T02:01:51.000Z",
+      "uid": "35240-db13ebbf-c1e2-4109-a2a7-e281d391ef5a"
     }
   ],
   "auth": {
@@ -627,17 +612,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "f48fb94a-5e05-44b3-97cc-d876a83ea849",
-    "name": "Better Stack Uptime Heartbeats Status Pages API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://uptime.betterstack.com/api/v2"
     }
-  }
+  ]
 }

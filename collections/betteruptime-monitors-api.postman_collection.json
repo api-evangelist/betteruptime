@@ -1,212 +1,657 @@
 {
+  "info": {
+    "_postman_id": "ce0ae211-18f3-4b16-9cbd-13a5546dc322",
+    "name": "Better Stack Uptime Monitors API",
+    "description": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:01:44.000Z",
+    "updatedAt": "2026-10-22T02:01:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce0ae211-18f3-4b16-9cbd-13a5546dc322"
+  },
   "item": [
     {
-      "id": "40c5cabb-7bf3-4927-96ff-bca1d98078ed",
-      "name": "Monitors",
-      "description": {
-        "content": "Manage uptime monitors for websites and services",
-        "type": "text/plain"
-      },
+      "name": "monitors",
       "item": [
         {
-          "id": "b8529c60-fbba-4709-8efa-08159be2abfc",
-          "name": "List monitors",
-          "request": {
-            "name": "List monitors",
-            "description": {
-              "content": "Returns a paginated list of all monitors in your account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "monitors"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+          "name": "{id}",
+          "item": [
+            {
+              "name": "Get a monitor",
+              "id": "2fc498f8-3851-4c31-ab5d-e98d7ebd0cfd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9c70584d-d3b9-403c-8b5f-247f9ce6fbe6",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Returns a single monitor by ID."
+              },
+              "response": [
                 {
-                  "disabled": false,
-                  "key": "team_name",
-                  "value": "<string>",
-                  "description": "Filter monitors belonging to a specified team when using global API token"
+                  "id": "89ccbb2d-9046-485c-980d-5376d9b7607f",
+                  "name": "A single monitor",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"<uri>\",\n      \"pronounceable_name\": \"<string>\",\n      \"monitor_type\": \"dns\",\n      \"monitor_group_id\": \"<string,null>\",\n      \"status\": \"up\",\n      \"last_checked_at\": \"<string,null-date-time>\",\n      \"check_frequency\": \"<integer>\",\n      \"request_timeout\": \"<integer>\",\n      \"recovery_period\": \"<integer>\",\n      \"confirmation_period\": \"<integer>\",\n      \"call\": \"<boolean>\",\n      \"sms\": \"<boolean>\",\n      \"email\": \"<boolean>\",\n      \"push\": \"<boolean>\",\n      \"critical_alert\": \"<boolean>\",\n      \"team_wait\": \"<integer>\",\n      \"policy_id\": \"<string,null>\",\n      \"expiration_policy_id\": \"<string,null>\",\n      \"verify_ssl\": \"<boolean>\",\n      \"ssl_expiration\": \"<integer,null>\",\n      \"domain_expiration\": \"<integer,null>\",\n      \"regions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"maintenance_from\": \"<string>\",\n      \"maintenance_to\": \"<string>\",\n      \"maintenance_timezone\": \"<string>\",\n      \"maintenance_days\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"proxy_host\": \"<string,null>\",\n      \"proxy_port\": \"<integer,null>\",\n      \"request_headers\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"request_body\": \"<string,null>\",\n      \"expected_status_codes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"required_keyword\": \"<string,null>\",\n      \"port\": \"<integer,null>\",\n      \"playwright_script\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"paused_at\": \"<string,null-date-time>\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-89ccbb2d-9046-485c-980d-5376d9b7607f"
                 },
                 {
-                  "disabled": false,
-                  "key": "url",
-                  "value": "<string>",
-                  "description": "Filter by monitor URL"
-                },
-                {
-                  "disabled": false,
-                  "key": "pronounceable_name",
-                  "value": "<string>",
-                  "description": "Filter by monitor pronounceable name"
-                },
-                {
-                  "disabled": false,
-                  "key": "page",
-                  "value": "<integer>",
-                  "description": "Page number for pagination"
+                  "id": "0ce193c9-de13-4fce-9b21-b5ae58e6aff6",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-0ce193c9-de13-4fce-9b21-b5ae58e6aff6"
                 }
               ],
-              "variable": []
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-2fc498f8-3851-4c31-ab5d-e98d7ebd0cfd"
             },
+            {
+              "name": "Update a monitor",
+              "id": "801916f7-d933-4804-8305-c3e5095daf34",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/monitors/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cad738ff-2184-44aa-a1b4-28005af974cf",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Updates an existing monitor."
+              },
+              "response": [
+                {
+                  "id": "4d41cc67-67bf-43f5-8de5-fdd32857120f",
+                  "name": "Monitor updated",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"<uri>\",\n      \"pronounceable_name\": \"<string>\",\n      \"monitor_type\": \"dns\",\n      \"monitor_group_id\": \"<string,null>\",\n      \"status\": \"up\",\n      \"last_checked_at\": \"<string,null-date-time>\",\n      \"check_frequency\": \"<integer>\",\n      \"request_timeout\": \"<integer>\",\n      \"recovery_period\": \"<integer>\",\n      \"confirmation_period\": \"<integer>\",\n      \"call\": \"<boolean>\",\n      \"sms\": \"<boolean>\",\n      \"email\": \"<boolean>\",\n      \"push\": \"<boolean>\",\n      \"critical_alert\": \"<boolean>\",\n      \"team_wait\": \"<integer>\",\n      \"policy_id\": \"<string,null>\",\n      \"expiration_policy_id\": \"<string,null>\",\n      \"verify_ssl\": \"<boolean>\",\n      \"ssl_expiration\": \"<integer,null>\",\n      \"domain_expiration\": \"<integer,null>\",\n      \"regions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"maintenance_from\": \"<string>\",\n      \"maintenance_to\": \"<string>\",\n      \"maintenance_timezone\": \"<string>\",\n      \"maintenance_days\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"proxy_host\": \"<string,null>\",\n      \"proxy_port\": \"<integer,null>\",\n      \"request_headers\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"request_body\": \"<string,null>\",\n      \"expected_status_codes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"required_keyword\": \"<string,null>\",\n      \"port\": \"<integer,null>\",\n      \"playwright_script\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"paused_at\": \"<string,null-date-time>\"\n    }\n  }\n}",
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-4d41cc67-67bf-43f5-8de5-fdd32857120f"
+                },
+                {
+                  "id": "3bac9594-55a9-4306-9703-7be65e9e92b9",
+                  "name": "Validation errors",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-3bac9594-55a9-4306-9703-7be65e9e92b9"
+                }
+              ],
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-801916f7-d933-4804-8305-c3e5095daf34"
+            },
+            {
+              "name": "Delete a monitor",
+              "id": "37831b4c-9783-4d32-9a22-7b9d9131779a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors/:id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "dbcb66f0-b5f3-44c8-87da-18aa7e6deb26",
+                      "key": "id",
+                      "value": "<string>",
+                      "description": "(Required) Resource identifier"
+                    }
+                  ]
+                },
+                "description": "Deletes an existing monitor."
+              },
+              "response": [
+                {
+                  "id": "1808b3ff-c2f6-4217-980f-df71517dfe64",
+                  "name": "Monitor deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-1808b3ff-c2f6-4217-980f-df71517dfe64"
+                },
+                {
+                  "id": "e9bf6c95-1da4-42c3-a6b2-4404f62ad274",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/monitors/:id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "monitors",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T02:01:45.000Z",
+                  "updatedAt": "2026-10-22T02:01:45.000Z",
+                  "uid": "35240-e9bf6c95-1da4-42c3-a6b2-4404f62ad274"
+                }
+              ],
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-37831b4c-9783-4d32-9a22-7b9d9131779a"
+            }
+          ],
+          "id": "1d726c3c-b4f4-43a7-a726-6847435343c1",
+          "createdAt": "2026-10-22T02:01:45.000Z",
+          "updatedAt": "2026-10-22T02:01:45.000Z",
+          "uid": "35240-1d726c3c-b4f4-43a7-a726-6847435343c1"
+        },
+        {
+          "name": "List monitors",
+          "id": "7e4d559f-7234-408f-9c20-063ae46cb5da",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "305c32f3-a1f5-40c6-ac21-5c821f30932d",
-              "name": "A list of monitors",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "team_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "url",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pronounceable_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"type\": \"monitor\",\n      \"attributes\": {\n        \"url\": \"https://QlwDPNBRXOBeNYMIFuTizd.iifm8meRbnIh-HA+oYHstZHBksU2.RMtlcP-Qo20q4u1bF2\",\n        \"pronounceable_name\": \"string\",\n        \"monitor_type\": \"ping\",\n        \"monitor_group_id\": \"string\",\n        \"status\": \"up\",\n        \"last_checked_at\": \"2010-02-17T22:09:02.014Z\",\n        \"check_frequency\": 8068,\n        \"request_timeout\": 9343,\n        \"recovery_period\": 1707,\n        \"confirmation_period\": 9293,\n        \"call\": false,\n        \"sms\": false,\n        \"email\": true,\n        \"push\": false,\n        \"critical_alert\": false,\n        \"team_wait\": 6939,\n        \"policy_id\": \"string\",\n        \"expiration_policy_id\": \"string\",\n        \"verify_ssl\": true,\n        \"ssl_expiration\": 1244,\n        \"domain_expiration\": 7622,\n        \"regions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"maintenance_from\": \"string\",\n        \"maintenance_to\": \"string\",\n        \"maintenance_timezone\": \"string\",\n        \"maintenance_days\": [\n          \"string\",\n          \"string\"\n        ],\n        \"proxy_host\": \"string\",\n        \"proxy_port\": 7901,\n        \"request_headers\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"request_body\": \"string\",\n        \"expected_status_codes\": [\n          7753,\n          2747\n        ],\n        \"required_keyword\": \"string\",\n        \"port\": 6260,\n        \"playwright_script\": \"string\",\n        \"created_at\": \"1990-11-24T08:40:34.688Z\",\n        \"updated_at\": \"1986-10-29T00:24:52.747Z\",\n        \"paused_at\": \"1994-03-24T16:43:30.096Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": \"monitor\",\n      \"attributes\": {\n        \"url\": \"https://eVzFAV.cllCDUZtsytm,JXXjDUz-h8a4owP7mIg17wUnjqPw1P-XpLJ\",\n        \"pronounceable_name\": \"string\",\n        \"monitor_type\": \"status\",\n        \"monitor_group_id\": \"string\",\n        \"status\": \"up\",\n        \"last_checked_at\": \"1960-06-28T02:52:31.795Z\",\n        \"check_frequency\": 9557,\n        \"request_timeout\": 2711,\n        \"recovery_period\": 7502,\n        \"confirmation_period\": 1569,\n        \"call\": false,\n        \"sms\": false,\n        \"email\": false,\n        \"push\": false,\n        \"critical_alert\": false,\n        \"team_wait\": 7001,\n        \"policy_id\": \"string\",\n        \"expiration_policy_id\": \"string\",\n        \"verify_ssl\": true,\n        \"ssl_expiration\": 3215,\n        \"domain_expiration\": 331,\n        \"regions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"maintenance_from\": \"string\",\n        \"maintenance_to\": \"string\",\n        \"maintenance_timezone\": \"string\",\n        \"maintenance_days\": [\n          \"string\",\n          \"string\"\n        ],\n        \"proxy_host\": \"string\",\n        \"proxy_port\": 35,\n        \"request_headers\": [\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"request_body\": \"string\",\n        \"expected_status_codes\": [\n          6774,\n          7729\n        ],\n        \"required_keyword\": \"string\",\n        \"port\": 8528,\n        \"playwright_script\": \"string\",\n        \"created_at\": \"2024-07-10T03:25:33.613Z\",\n        \"updated_at\": \"1980-03-13T06:42:16.666Z\",\n        \"paused_at\": \"1955-08-27T23:34:34.485Z\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"http://rvvCLGeUFrhV.bamxyZc-zQ1dicfxmHQr27MZql5X7oTi,pTZ3jcd10fWzCkPzNH.Wd4,9Gfms-qKXADAcv\",\n    \"last\": \"https://Sqd.ushNufXRLJuQ0qFuiliiJScAoH2fLlU6q2xsOkqgnlSAz.J7y4yDzxxKer9+bymavAm\",\n    \"prev\": \"http://dHHwhkkGWWqsGPCCIjzpcg.lwpQEcebpPliYZOBM0eSitXfRdvLV5+klJ1jZkq-htOLOpBPe+MLXTiT3\",\n    \"next\": \"https://DffHiIjkszNyeHYOoFVXHORQHLzkSc.axAyVbgLo239V4Pz+s8QO0l.aNyx-ejMWEU\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "b82ccb5d-4e5b-4c15-b1b5-8aa6254dc60a",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "team_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "url",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "pronounceable_name",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "page",
-                      "value": "<integer>"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ff0fb829-abe2-40c9-a279-2de9de71f8bb",
-          "name": "Create a monitor",
-          "request": {
-            "name": "Create a monitor",
-            "description": {
-              "content": "Creates a new uptime monitor.",
-              "type": "text/plain"
-            },
             "url": {
-              "path": [
-                "monitors"
-              ],
+              "raw": "{{baseUrl}}/monitors?team_name=<string>&url=<string>&pronounceable_name=<string>&page=<integer>",
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": []
+              "path": [
+                "monitors"
+              ],
+              "query": [
+                {
+                  "description": "Filter monitors belonging to a specified team when using global API token",
+                  "key": "team_name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by monitor URL",
+                  "key": "url",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by monitor pronounceable name",
+                  "key": "pronounceable_name",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Page number for pagination",
+                  "key": "page",
+                  "value": "<integer>"
+                }
+              ]
             },
+            "description": "Returns a paginated list of all monitors in your account."
+          },
+          "response": [
+            {
+              "id": "b6d58053-0691-462e-aeaa-ce397acf70d9",
+              "name": "A list of monitors",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors?team_name=<string>&url=<string>&pronounceable_name=<string>&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter monitors belonging to a specified team when using global API token",
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by monitor URL",
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by monitor pronounceable name",
+                      "key": "pronounceable_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"monitor\",\n      \"attributes\": {\n        \"url\": \"<uri>\",\n        \"pronounceable_name\": \"<string>\",\n        \"monitor_type\": \"dns\",\n        \"monitor_group_id\": \"<string,null>\",\n        \"status\": \"validating\",\n        \"last_checked_at\": \"<string,null-date-time>\",\n        \"check_frequency\": \"<integer>\",\n        \"request_timeout\": \"<integer>\",\n        \"recovery_period\": \"<integer>\",\n        \"confirmation_period\": \"<integer>\",\n        \"call\": \"<boolean>\",\n        \"sms\": \"<boolean>\",\n        \"email\": \"<boolean>\",\n        \"push\": \"<boolean>\",\n        \"critical_alert\": \"<boolean>\",\n        \"team_wait\": \"<integer>\",\n        \"policy_id\": \"<string,null>\",\n        \"expiration_policy_id\": \"<string,null>\",\n        \"verify_ssl\": \"<boolean>\",\n        \"ssl_expiration\": \"<integer,null>\",\n        \"domain_expiration\": \"<integer,null>\",\n        \"regions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maintenance_from\": \"<string>\",\n        \"maintenance_to\": \"<string>\",\n        \"maintenance_timezone\": \"<string>\",\n        \"maintenance_days\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"proxy_host\": \"<string,null>\",\n        \"proxy_port\": \"<integer,null>\",\n        \"request_headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"request_body\": \"<string,null>\",\n        \"expected_status_codes\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"required_keyword\": \"<string,null>\",\n        \"port\": \"<integer,null>\",\n        \"playwright_script\": \"<string,null>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"paused_at\": \"<string,null-date-time>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"monitor\",\n      \"attributes\": {\n        \"url\": \"<uri>\",\n        \"pronounceable_name\": \"<string>\",\n        \"monitor_type\": \"smtp\",\n        \"monitor_group_id\": \"<string,null>\",\n        \"status\": \"pending\",\n        \"last_checked_at\": \"<string,null-date-time>\",\n        \"check_frequency\": \"<integer>\",\n        \"request_timeout\": \"<integer>\",\n        \"recovery_period\": \"<integer>\",\n        \"confirmation_period\": \"<integer>\",\n        \"call\": \"<boolean>\",\n        \"sms\": \"<boolean>\",\n        \"email\": \"<boolean>\",\n        \"push\": \"<boolean>\",\n        \"critical_alert\": \"<boolean>\",\n        \"team_wait\": \"<integer>\",\n        \"policy_id\": \"<string,null>\",\n        \"expiration_policy_id\": \"<string,null>\",\n        \"verify_ssl\": \"<boolean>\",\n        \"ssl_expiration\": \"<integer,null>\",\n        \"domain_expiration\": \"<integer,null>\",\n        \"regions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"maintenance_from\": \"<string>\",\n        \"maintenance_to\": \"<string>\",\n        \"maintenance_timezone\": \"<string>\",\n        \"maintenance_days\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"proxy_host\": \"<string,null>\",\n        \"proxy_port\": \"<integer,null>\",\n        \"request_headers\": [\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ],\n        \"request_body\": \"<string,null>\",\n        \"expected_status_codes\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"required_keyword\": \"<string,null>\",\n        \"port\": \"<integer,null>\",\n        \"playwright_script\": \"<string,null>\",\n        \"created_at\": \"<dateTime>\",\n        \"updated_at\": \"<dateTime>\",\n        \"paused_at\": \"<string,null-date-time>\"\n      }\n    }\n  ],\n  \"pagination\": {\n    \"first\": \"<uri>\",\n    \"last\": \"<uri>\",\n    \"prev\": \"<string,null-uri>\",\n    \"next\": \"<string,null-uri>\"\n  }\n}",
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-b6d58053-0691-462e-aeaa-ce397acf70d9"
+            },
+            {
+              "id": "135f358b-93a6-4c77-9864-60ab9be38903",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/monitors?team_name=<string>&url=<string>&pronounceable_name=<string>&page=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter monitors belonging to a specified team when using global API token",
+                      "key": "team_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by monitor URL",
+                      "key": "url",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by monitor pronounceable name",
+                      "key": "pronounceable_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Page number for pagination",
+                      "key": "page",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-135f358b-93a6-4c77-9864-60ab9be38903"
+            }
+          ],
+          "createdAt": "2026-10-22T02:01:45.000Z",
+          "updatedAt": "2026-10-22T02:01:45.000Z",
+          "uid": "35240-7e4d559f-7234-408f-9c20-063ae46cb5da"
+        },
+        {
+          "name": "Create a monitor",
+          "id": "93db024c-31c1-44b0-960b-d8fbdfb4bcf4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -217,606 +662,150 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+              "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/monitors",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "monitors"
+              ]
+            },
+            "description": "Creates a new uptime monitor."
           },
           "response": [
             {
-              "id": "9c9db1bf-8f7f-45bd-8958-8f304ebb9df9",
+              "id": "65e07edb-ce2d-494c-bde7-909b59d44244",
               "name": "Monitor created",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
                   {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "key": "Content-Type",
+                    "value": "application/json"
                   },
                   {
                     "key": "Accept",
                     "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/monitors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "monitors"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"http://GWXOpKjSraRSQSzJeJBAECliovczqUC.yugwqAzn1mtpOV,1aV3jldAWoHHhfChU4qcgUi5w,1AyT-1CGUmEuUbKS,3WevHWuC-tz\",\n      \"pronounceable_name\": \"string\",\n      \"monitor_type\": \"udp\",\n      \"monitor_group_id\": \"string\",\n      \"status\": \"paused\",\n      \"last_checked_at\": \"2026-06-22T14:20:03.657Z\",\n      \"check_frequency\": 404,\n      \"request_timeout\": 7554,\n      \"recovery_period\": 6764,\n      \"confirmation_period\": 9598,\n      \"call\": true,\n      \"sms\": false,\n      \"email\": false,\n      \"push\": false,\n      \"critical_alert\": false,\n      \"team_wait\": 5241,\n      \"policy_id\": \"string\",\n      \"expiration_policy_id\": \"string\",\n      \"verify_ssl\": true,\n      \"ssl_expiration\": 9377,\n      \"domain_expiration\": 9021,\n      \"regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proxy_host\": \"string\",\n      \"proxy_port\": 6218,\n      \"request_headers\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"request_body\": \"string\",\n      \"expected_status_codes\": [\n        7797,\n        4858\n      ],\n      \"required_keyword\": \"string\",\n      \"port\": 3835,\n      \"playwright_script\": \"string\",\n      \"created_at\": \"2014-08-16T18:49:48.902Z\",\n      \"updated_at\": \"1953-04-10T01:41:04.239Z\",\n      \"paused_at\": \"2022-06-27T11:07:39.155Z\"\n    }\n  }\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"<uri>\",\n      \"pronounceable_name\": \"<string>\",\n      \"monitor_type\": \"dns\",\n      \"monitor_group_id\": \"<string,null>\",\n      \"status\": \"up\",\n      \"last_checked_at\": \"<string,null-date-time>\",\n      \"check_frequency\": \"<integer>\",\n      \"request_timeout\": \"<integer>\",\n      \"recovery_period\": \"<integer>\",\n      \"confirmation_period\": \"<integer>\",\n      \"call\": \"<boolean>\",\n      \"sms\": \"<boolean>\",\n      \"email\": \"<boolean>\",\n      \"push\": \"<boolean>\",\n      \"critical_alert\": \"<boolean>\",\n      \"team_wait\": \"<integer>\",\n      \"policy_id\": \"<string,null>\",\n      \"expiration_policy_id\": \"<string,null>\",\n      \"verify_ssl\": \"<boolean>\",\n      \"ssl_expiration\": \"<integer,null>\",\n      \"domain_expiration\": \"<integer,null>\",\n      \"regions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"maintenance_from\": \"<string>\",\n      \"maintenance_to\": \"<string>\",\n      \"maintenance_timezone\": \"<string>\",\n      \"maintenance_days\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"proxy_host\": \"<string,null>\",\n      \"proxy_port\": \"<integer,null>\",\n      \"request_headers\": [\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"request_body\": \"<string,null>\",\n      \"expected_status_codes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"required_keyword\": \"<string,null>\",\n      \"port\": \"<integer,null>\",\n      \"playwright_script\": \"<string,null>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"paused_at\": \"<string,null-date-time>\"\n    }\n  }\n}",
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-65e07edb-ce2d-494c-bde7-909b59d44244"
             },
             {
-              "id": "61f512fb-2716-4232-adcf-8190a2b51fab",
+              "id": "40aab103-f03d-4d45-8aee-cb35421a8d36",
               "name": "Validation errors",
               "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"status\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
+                  "raw": "{{baseUrl}}/monitors",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "monitors"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  ]
                 }
               },
               "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
               "code": 422,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    },\n    {\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-10-22T02:01:45.000Z",
+              "updatedAt": "2026-10-22T02:01:45.000Z",
+              "uid": "35240-40aab103-f03d-4d45-8aee-cb35421a8d36"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "8b52d02b-fa2e-42ff-b006-836b0f7fd6b8",
-          "name": "Get a monitor",
-          "request": {
-            "name": "Get a monitor",
-            "description": {
-              "content": "Returns a single monitor by ID.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "monitors",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7d84af1a-407c-4d3d-b71e-b1e036ef1b9c",
-              "name": "A single monitor",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"http://GWXOpKjSraRSQSzJeJBAECliovczqUC.yugwqAzn1mtpOV,1aV3jldAWoHHhfChU4qcgUi5w,1AyT-1CGUmEuUbKS,3WevHWuC-tz\",\n      \"pronounceable_name\": \"string\",\n      \"monitor_type\": \"udp\",\n      \"monitor_group_id\": \"string\",\n      \"status\": \"paused\",\n      \"last_checked_at\": \"2026-06-22T14:20:03.657Z\",\n      \"check_frequency\": 404,\n      \"request_timeout\": 7554,\n      \"recovery_period\": 6764,\n      \"confirmation_period\": 9598,\n      \"call\": true,\n      \"sms\": false,\n      \"email\": false,\n      \"push\": false,\n      \"critical_alert\": false,\n      \"team_wait\": 5241,\n      \"policy_id\": \"string\",\n      \"expiration_policy_id\": \"string\",\n      \"verify_ssl\": true,\n      \"ssl_expiration\": 9377,\n      \"domain_expiration\": 9021,\n      \"regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proxy_host\": \"string\",\n      \"proxy_port\": 6218,\n      \"request_headers\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"request_body\": \"string\",\n      \"expected_status_codes\": [\n        7797,\n        4858\n      ],\n      \"required_keyword\": \"string\",\n      \"port\": 3835,\n      \"playwright_script\": \"string\",\n      \"created_at\": \"2014-08-16T18:49:48.902Z\",\n      \"updated_at\": \"1953-04-10T01:41:04.239Z\",\n      \"paused_at\": \"2022-06-27T11:07:39.155Z\"\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "601cfc60-db01-43b0-9de9-6b75bde7bf63",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "71fd5e2c-3685-46fb-a768-2d41a38f6cde",
-          "name": "Update a monitor",
-          "request": {
-            "name": "Update a monitor",
-            "description": {
-              "content": "Updates an existing monitor.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "monitors",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PATCH",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "ad7c675f-3007-4d51-b396-f0d77d8c3c9a",
-              "name": "Monitor updated",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"type\": \"monitor\",\n    \"attributes\": {\n      \"url\": \"http://GWXOpKjSraRSQSzJeJBAECliovczqUC.yugwqAzn1mtpOV,1aV3jldAWoHHhfChU4qcgUi5w,1AyT-1CGUmEuUbKS,3WevHWuC-tz\",\n      \"pronounceable_name\": \"string\",\n      \"monitor_type\": \"udp\",\n      \"monitor_group_id\": \"string\",\n      \"status\": \"paused\",\n      \"last_checked_at\": \"2026-06-22T14:20:03.657Z\",\n      \"check_frequency\": 404,\n      \"request_timeout\": 7554,\n      \"recovery_period\": 6764,\n      \"confirmation_period\": 9598,\n      \"call\": true,\n      \"sms\": false,\n      \"email\": false,\n      \"push\": false,\n      \"critical_alert\": false,\n      \"team_wait\": 5241,\n      \"policy_id\": \"string\",\n      \"expiration_policy_id\": \"string\",\n      \"verify_ssl\": true,\n      \"ssl_expiration\": 9377,\n      \"domain_expiration\": 9021,\n      \"regions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"maintenance_from\": \"string\",\n      \"maintenance_to\": \"string\",\n      \"maintenance_timezone\": \"string\",\n      \"maintenance_days\": [\n        \"string\",\n        \"string\"\n      ],\n      \"proxy_host\": \"string\",\n      \"proxy_port\": 6218,\n      \"request_headers\": [\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"request_body\": \"string\",\n      \"expected_status_codes\": [\n        7797,\n        4858\n      ],\n      \"required_keyword\": \"string\",\n      \"port\": 3835,\n      \"playwright_script\": \"string\",\n      \"created_at\": \"2014-08-16T18:49:48.902Z\",\n      \"updated_at\": \"1953-04-10T01:41:04.239Z\",\n      \"paused_at\": \"2022-06-27T11:07:39.155Z\"\n    }\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c6a8773f-2078-422d-ae13-01a23f028c8b",
-              "name": "Validation errors",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PATCH",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"url\": \"<uri>\",\n  \"pronounceable_name\": \"<string>\",\n  \"monitor_type\": \"<string>\",\n  \"check_frequency\": \"<integer>\",\n  \"request_timeout\": \"<integer>\",\n  \"recovery_period\": \"<integer>\",\n  \"confirmation_period\": \"<integer>\",\n  \"call\": \"<boolean>\",\n  \"sms\": \"<boolean>\",\n  \"email\": \"<boolean>\",\n  \"push\": \"<boolean>\",\n  \"regions\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"verify_ssl\": \"<boolean>\",\n  \"ssl_expiration\": \"<integer>\",\n  \"domain_expiration\": \"<integer>\",\n  \"expected_status_codes\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"required_keyword\": \"<string>\",\n  \"request_headers\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"request_body\": \"<string>\",\n  \"policy_id\": \"<string>\",\n  \"port\": \"<integer>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
-              "code": 422,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "365c8d81-210b-47ff-abf5-ff40feaa53b5",
-          "name": "Delete a monitor",
-          "request": {
-            "name": "Delete a monitor",
-            "description": {
-              "content": "Deletes an existing monitor.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "monitors",
-                ":id"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "id",
-                  "description": "(Required) Resource identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9e23d515-2e3b-4aba-9791-ce358b0f23b5",
-              "name": "Monitor deleted",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "b7f7def3-1998-44e4-9d2e-5297e42880ee",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "monitors",
-                    ":id"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "id",
-                      "description": "(Required) Resource identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"errors\": [\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    },\n    {\n      \"title\": \"string\",\n      \"detail\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:01:45.000Z",
+          "updatedAt": "2026-10-22T02:01:45.000Z",
+          "uid": "35240-93db024c-31c1-44b0-960b-d8fbdfb4bcf4"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://uptime.betterstack.com/api/v2",
-      "key": "baseUrl"
+      "id": "cd37a010-7e60-4156-950b-fd1d2e3845a4",
+      "createdAt": "2026-10-22T02:01:45.000Z",
+      "updatedAt": "2026-10-22T02:01:45.000Z",
+      "uid": "35240-cd37a010-7e60-4156-950b-fd1d2e3845a4"
     }
   ],
   "auth": {
@@ -824,17 +813,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "dc8e6317-10e1-49c5-9355-3639bcf6d21a",
-    "name": "Better Stack Uptime Heartbeats Monitors API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Better Stack Uptime API provides programmatic access to manage uptime monitors, heartbeats, on-call schedules, incidents, status pages, integrations, team members, and reporting. The API follows the JSON:API specification and uses Bearer token authentication.\n\nContact Support:\n Name: Better Stack Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://uptime.betterstack.com/api/v2"
     }
-  }
+  ]
 }
