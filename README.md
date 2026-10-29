@@ -1,4 +1,4 @@
-# Better Uptime (betteruptime)
+# Better Uptime
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,53 +64,163 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Better Uptime (now part of Better Stack) is an uptime monitoring and incident management platform that helps engineering teams detect outages, manage on-call schedules, and communicate incidents through hosted status pages. The platform provides a REST API following the JSON:API specification for programmatic management of monitors, heartbeats, on-call rotations, incidents, and status pages, with Bearer token authentication and Terraform provider support.
+Better Uptime (now part of Better Stack) is an uptime monitoring and incident management platform that helps engineering teams detect outages, manage on-call schedules, and communicate incidents through status pages. The platform provides a REST API following the JSON:API specification for programmatic management of monitors, heartbeats, on-call schedules, status pages, and integrations. Better Stack supports Bearer token authentication with both global and team-scoped API tokens, and offers a Terraform provider for infrastructure-as-code workflows.
 
-APIs.json: [https://raw.githubusercontent.com/api-evangelist/betteruptime/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/betteruptime/refs/heads/main/apis.yml)
+**Areas:** Uptime Monitoring · Incident Management · Status Pages · On-Call Scheduling · Observability · DevOps
 
-Naftiko: [https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=betteruptime-api-evangelist&utm_content=repo](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=betteruptime-api-evangelist&utm_content=repo)
+## Better Uptime on APIs.io
 
-## Tags
+Everything profiled for Better Uptime is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/betteruptime/](https://apis.io/providers/betteruptime/)** — or go straight to one of the APIs or properties below.
 
-- Uptime Monitoring
-- Incident Management
-- Status Pages
-- On-Call Scheduling
-- Observability
-- DevOps
+### APIs (4)
 
-## APIs
+- [Better Uptime Heartbeats API](https://apis.io/apis/betteruptime/betteruptime-heartbeats-api/) — Manage heartbeat monitors for cron jobs and background workers
+- [Better Uptime Incidents API](https://apis.io/apis/betteruptime/betteruptime-incidents-api/) — View and manage incidents triggered by monitors
+- [Better Uptime Monitors API](https://apis.io/apis/betteruptime/betteruptime-monitors-api/) — Manage uptime monitors for websites and services
+- [Better Uptime Status Pages API](https://apis.io/apis/betteruptime/betteruptime-status-pages-api/) — Manage public status pages for communicating service health
 
-| Name | Description | Docs |
-|------|-------------|------|
-| Better Stack Uptime API | REST API for managing monitors, heartbeats, on-call schedules, incidents, status pages, integrations, and team members | [Documentation](https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/) |
+### Published properties
 
-## Plans, Rate Limits, and FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/betteruptime-plans-pricing.yml](plans/betteruptime-plans-pricing.yml) |
-| Rate Limits | [rate-limits/betteruptime-rate-limits.yml](rate-limits/betteruptime-rate-limits.yml) |
-| FinOps | [finops/betteruptime-finops.yml](finops/betteruptime-finops.yml) |
+#### Agentic access (1)
 
-## Timestamps
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Created: 2026-06-12
-- Modified: 2026-06-12
+- [Betteruptime Agentic Access](https://apis.io/agentic-access/betteruptime/betteruptime-agentic-access/)
 
-## Common Properties
+#### JSON Schema (4)
 
-| Type | URL |
-|------|-----|
-| Website | https://betterstack.com/uptime |
-| Documentation | https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/ |
-| GitHub Organization | https://github.com/BetterStackHQ |
-| LinkedIn | https://www.linkedin.com/company/betterstack |
-| X | https://x.com/betteruptime |
-| Blog | https://betterstack.com/community/blog/ |
-| Pricing | https://betterstack.com/pricing |
-| Status Page | https://status.betterstack.com/ |
+The data models the API reads and writes.
 
-## Maintainers
+- [Better Stack Heartbeat](https://apis.io/schemas/betteruptime/betteruptime-heartbeat/)
+- [Better Stack Incident](https://apis.io/schemas/betteruptime/betteruptime-incident/)
+- [Better Stack Monitor](https://apis.io/schemas/betteruptime/betteruptime-monitor/)
+- [Better Stack Status Page](https://apis.io/schemas/betteruptime/betteruptime-status-page/)
 
-- Kin Lane / kin@apievangelist.com
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Betteruptime Context](https://apis.io/jsonld/betteruptime/betteruptime-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Betteruptime Vocabulary](https://apis.io/vocabularies/betteruptime/betteruptime-vocabulary/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Betteruptime Create Monitor Example](https://apis.io/examples/betteruptime/betteruptime-create-monitor-example/)
+- [Betteruptime Get Monitor Example](https://apis.io/examples/betteruptime/betteruptime-get-monitor-example/)
+- [Betteruptime List Incidents Example](https://apis.io/examples/betteruptime/betteruptime-list-incidents-example/)
+- [Betteruptime List Monitors Example](https://apis.io/examples/betteruptime/betteruptime-list-monitors-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Better Stack Uptime Heartbeats API](https://apis.io/collections/betteruptime/open-betteruptime-heartbeats-api/)
+- [Better Stack Uptime Heartbeats Incidents API](https://apis.io/collections/betteruptime/open-betteruptime-incidents-api/)
+- [Better Stack Uptime Heartbeats Monitors API](https://apis.io/collections/betteruptime/open-betteruptime-monitors-api/)
+- [Better Stack Uptime Heartbeats Status Pages API](https://apis.io/collections/betteruptime/open-betteruptime-status-pages-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Better Uptime — jsonschema rules](https://apis.io/rules/betteruptime/betteruptime-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Betteruptime Authentication](https://apis.io/security/betteruptime/betteruptime-authentication/)
+- [Betteruptime Domain Security](https://apis.io/security/betteruptime/betteruptime-domain-security/)
+- [Betteruptime Trust Center](https://apis.io/security/betteruptime/betteruptime-trust-center/)
+- [Betteruptime Vulnerability Disclosure](https://apis.io/security/betteruptime/betteruptime-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Betteruptime Plans Pricing](https://apis.io/plans/betteruptime/betteruptime-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Betteruptime Rate Limits](https://apis.io/rate-limits/betteruptime/betteruptime-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Betteruptime Finops](https://apis.io/finops/betteruptime/betteruptime-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://betterstack.com/uptime)
+- [Documentation](https://betterstack.com/docs/uptime/api/getting-started-with-uptime-api/)
+- [Pricing](https://betterstack.com/pricing)
+- [Blog](https://betterstack.com/community/blog/)
+- [GitHub](https://github.com/BetterStackHQ)
+- [Status](https://status.betterstack.com/)
+
+## API Evangelist rating
+
+**Kin Score 37.6** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 59.7 |
+| Contract governance | 23.5 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 26.3 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/betteruptime/](https://apis.io/providers/betteruptime/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Better Uptime: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/betteruptime/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
